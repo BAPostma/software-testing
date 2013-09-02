@@ -37,10 +37,30 @@ maxInt [x] = x
 maxInt (x:xs) = max x (maxInt xs)
 
 -- - Exercise 1.10
-removeFst :: Int -> [Int] -> [Int]
+-- removeFst :: Int -> [Int] -> [Int] -- commented, because in Exercise 1.15 we use this function for Strings too
 removeFst m [] = []
 removeFst m (x:xs) | m == x    = xs
                    | otherwise = x : (removeFst m xs)
 
--- - Exercise 1.11
+-- - Exercise 1.13
+count :: Char -> String -> Int
+count c [] = 0
+count c (x:xs) | c == x    = 1 + count c xs
+               | otherwise = count c xs
 
+-- - Exercise 1.14
+blowup :: String -> String
+blowup xs = blowup' 1 xs
+
+blowup' :: Int -> String -> String
+blowup' _ [] = []
+blowup' i (x:xs) = (copy x i) ++ (blowup' (i+1) xs)
+
+copy :: Char -> Int -> [Char]
+copy c i | i > 0 = c : (copy c (i-1))
+	 | otherwise = []
+
+-- - Exercise 1.15
+srtString :: [String] -> [String]
+srtString [] = []
+srtString xs = m : (srtString (removeFst m xs)) where m = minimum xs

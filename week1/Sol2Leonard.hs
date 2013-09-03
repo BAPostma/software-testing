@@ -22,7 +22,7 @@ import TAMO
 --  f  f  f   f  f
 -- The row P and the row of the second <+> are indeed equivalent
 
--- - Exercise 2.10
+-- - Exercise 2.11
 -- 1.
 -- P | not not P
 -- t | t   f   t
@@ -150,3 +150,14 @@ import TAMO
 -- f f   f f  t  |  f f  f  f   f t  t
 -- f f   f f  f  |  f f  f  f   f f  f
 -- Rows 2 and 9 are indeed equivalent
+
+-- - Exercise 2.13
+tst1a = not True <=> False
+tst1b = not False <=> True
+tst2 = logEquiv1 (\ p -> p ==> False) (\ p -> not p)
+tst3a = logEquiv1 (\ p -> p || True) (\ p -> True)
+tst3b = logEquiv1 (\ p -> p && False) (\ p -> False)
+tst4a = logEquiv1 (\ p -> p || False) (\ p -> p)
+tst4b = logEquiv1 (\ p -> p && True) (\ p -> p)
+tst5 = logEquiv1 (\ p -> p || not p) (\ p -> True)
+tst6 = logEquiv1 (\ p -> p && not p) (\ p -> False)

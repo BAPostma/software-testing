@@ -1,4 +1,4 @@
-module Sol2Leonard where
+module Sol2 where
 
 import GS
 import TAMO

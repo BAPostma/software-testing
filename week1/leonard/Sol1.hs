@@ -1,4 +1,4 @@
-module Sol1Leonard where
+module Sol1 where
 
 import GS
 

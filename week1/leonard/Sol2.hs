@@ -161,3 +161,11 @@ tst4a = logEquiv1 (|| False) id
 tst4b = logEquiv1 (&& True) id
 tst5 = logEquiv1 (\ p -> p || not p) (const True)
 tst6 = logEquiv1 (\ p -> p && not p) (const False)
+
+-- - Exercise 2.15
+contradiction1 bf = not (bf True) && not (bf False)
+contradiction2 bf = not (or [ bf p q | p <- [True, False],
+                                       q <- [True, False]])
+contradiction3 bf = not (or [ bf p q r | p <- [True, False],
+                                         q <- [True, False],
+                                         r <- [True, False]])

@@ -30,18 +30,18 @@ import TAMO
 -- f | f   t   f
 -- f | f   t   f
 -- Rows 1 and 2 are indeed equivalent
---
+
 -- 2.
 -- P || P | P
 -- t t  t | t
 -- f f  f | f
 -- Rows 2 and 4 are indeed equivalent
---
+
 -- P && P | P
 -- t t  t | t
 -- f f  f | f
 -- Rows 2 and 4 are indeed equivalent
---
+
 -- 3.
 -- (P ==> Q) | not P || Q
 --  t t   t  | f   t t  t
@@ -86,3 +86,67 @@ import TAMO
 --  f f   t  |   f t   t  f   t f   f   |   f f  t  f   t   f f  f   t
 --  f t   f  |   f t   f  t   f t   f   |   f f  f  t   t   f t  t   f
 -- Rows 2, 7 and 14 are indeed equivalent
+
+-- 6.
+-- P && Q | Q && P
+-- t t  t | t t  t
+-- t f  f | f f  t
+-- f f  t | t f  f
+-- f f  f | f f  f
+-- Rows 2 and 5 are indeed equivalent
+
+-- P || Q | Q || P
+-- t t  t | t t  t
+-- t t  f | f t  t
+-- f t  t | t t  f
+-- f f  f | f f  f
+-- Rows 2 and 4 are indeed equivalent
+
+-- 7.
+-- See example 2.6
+
+-- 8.
+-- P && (Q && R) | (P && Q) && R
+-- t t   t t  t  |  t t  t  t  t
+-- t f   t f  f  |  t t  t  f  f
+-- t f   f f  t  |  t f  f  f  t
+-- t f   f f  f  |  t f  f  f  f
+-- f f   t t  t  |  f f  t  f  t
+-- f f   t f  f  |  f f  t  f  f
+-- f f   f f  t  |  f f  f  f  t
+-- f f   f f  f  |  f f  f  f  f
+-- Rows 2 and 9 are indeed equivalent
+
+-- P || (Q || R) | (P || Q) || R
+-- t t   t t  t  |  t t  t  t  t
+-- t t   t t  f  |  t t  t  t  f
+-- t t   f t  t  |  t t  f  t  t
+-- t t   f f  f  |  t t  f  t  f
+-- f t   t t  t  |  f t  t  t  t
+-- f t   t t  f  |  f t  t  t  f
+-- f t   f t  t  |  f f  f  t  t
+-- f f   f f  f  |  f f  f  f  f
+-- Rows 2 and 9 are indeed equivalent
+
+-- 9.
+-- P && (Q || R) | (P && Q) || (P && R)
+-- t t   t t  t  |  t t  t  t   t t  t
+-- t t   t t  f  |  t t  t  t   t f  f
+-- t t   f t  t  |  t f  f  t   t t  t
+-- t f   f f  f  |  t f  f  f   t f  f
+-- f f   t t  t  |  f f  t  f   f f  t
+-- f f   t t  f  |  f f  t  f   f f  f
+-- f f   f t  t  |  f f  f  f   f f  t
+-- f f   f f  f  |  f f  f  f   f f  f
+-- Rows 2 and 9 are indeed equivalent
+
+-- P || (Q && P) | (P || Q) && (P || R)
+-- t t   t t  t  |  t t  t  t   t t  t
+-- t t   t f  f  |  t t  t  t   t t  f
+-- t t   f f  t  |  t t  f  t   t t  t
+-- t t   f f  f  |  t t  f  t   t t  f
+-- f t   t t  t  |  f t  t  t   f t  t
+-- f f   t f  f  |  f t  t  f   f f  f
+-- f f   f f  t  |  f f  f  f   f t  t
+-- f f   f f  f  |  f f  f  f   f f  f
+-- Rows 2 and 9 are indeed equivalent

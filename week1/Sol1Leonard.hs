@@ -99,3 +99,15 @@ substring xs ys | prefix xs ys           = True
 -- flip :: (a -> b -> c) -> b -> a -> c, flips the order of the arguments
 -- 7
 -- flip (++) :: [a] -> [a] -> [a], prepends the first list (second argument) to the second list (third argument)
+
+-- - Exercise 1.20
+lengths :: [[a]] -> [Int]
+lengths xs = map length xs
+
+-- - Exercise 1.21
+-- This is not possible with the map function. You can't reduce a list with the map function
+sumLengths :: [[a]] -> Int
+sumLengths xs = sum (lengths xs)
+
+-- - Exercise 1.24
+-- Nothing changes, 'ldp' now returns a function that expects an Integer, this Integer is provided in the function 'prime' 

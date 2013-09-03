@@ -154,10 +154,10 @@ import TAMO
 -- - Exercise 2.13
 tst1a = not True <=> False
 tst1b = not False <=> True
-tst2 = logEquiv1 (\ p -> p ==> False) (\ p -> not p)
-tst3a = logEquiv1 (\ p -> p || True) (\ p -> True)
-tst3b = logEquiv1 (\ p -> p && False) (\ p -> False)
-tst4a = logEquiv1 (\ p -> p || False) (\ p -> p)
-tst4b = logEquiv1 (\ p -> p && True) (\ p -> p)
-tst5 = logEquiv1 (\ p -> p || not p) (\ p -> True)
-tst6 = logEquiv1 (\ p -> p && not p) (\ p -> False)
+tst2 = logEquiv1 (==> False) not
+tst3a = logEquiv1 (|| True) (const True)
+tst3b = logEquiv1 (&& False) (const False)
+tst4a = logEquiv1 (|| False) id
+tst4b = logEquiv1 (&& True) id
+tst5 = logEquiv1 (\ p -> p || not p) (const True)
+tst6 = logEquiv1 (\ p -> p && not p) (const False)

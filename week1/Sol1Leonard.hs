@@ -40,7 +40,7 @@ maxInt (x:xs) = max x (maxInt xs)
 -- removeFst :: Int -> [Int] -> [Int] -- commented, because in Exercise 1.15 we use this function for Strings too
 removeFst m [] = []
 removeFst m (x:xs) | m == x    = xs
-                   | otherwise = x : (removeFst m xs)
+                   | otherwise = x : removeFst m xs
 
 -- - Exercise 1.13
 count :: Char -> String -> Int
@@ -50,20 +50,20 @@ count c (x:xs) | c == x    = 1 + count c xs
 
 -- - Exercise 1.14
 blowup :: String -> String
-blowup xs = blowup' 1 xs
+blowup = blowup' 1
 
 blowup' :: Int -> String -> String
 blowup' _ [] = []
-blowup' i (x:xs) = (copy x i) ++ (blowup' (i+1) xs)
+blowup' i (x:xs) = copy x i ++ blowup' (i+1) xs
 
-copy :: Char -> Int -> [Char]
-copy c i | i > 0 = c : (copy c (i-1))
+copy :: Char -> Int -> String
+copy c i | i > 0 = c : copy c (i-1)
 	 | otherwise = []
 
 -- - Exercise 1.15
 srtString :: [String] -> [String]
 srtString [] = []
-srtString xs = m : (srtString (removeFst m xs)) where m = minimum xs
+srtString xs = m : srtString (removeFst m xs) where m = minimum xs
 
 -- - Exercise 1.17
 substring :: String -> String -> Bool
@@ -102,12 +102,12 @@ substring xs ys | prefix xs ys           = True
 
 -- - Exercise 1.20
 lengths :: [[a]] -> [Int]
-lengths xs = map length xs
+lengths = map length
 
 -- - Exercise 1.21
 -- This is not possible with the map function. You can't reduce a list with the map function
 sumLengths :: [[a]] -> Int
-sumLengths xs = sum (lengths xs)
+sumLengths = sum . lengths
 
 -- - Exercise 1.24
 -- Nothing changes, 'ldp' now returns a function that expects an Integer, this Integer is provided in the function 'prime' 

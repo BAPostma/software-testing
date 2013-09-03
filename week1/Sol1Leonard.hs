@@ -64,3 +64,38 @@ copy c i | i > 0 = c : (copy c (i-1))
 srtString :: [String] -> [String]
 srtString [] = []
 srtString xs = m : (srtString (removeFst m xs)) where m = minimum xs
+
+-- - Exercise 1.17
+substring :: String -> String -> Bool
+substring xs [] = False
+substring xs ys | prefix xs ys           = True
+                | substring xs (tail ys) = True
+                | otherwise              = False
+
+-- - Exercise 1.18
+-- 1
+-- srtString ["b", "a"] :: [String]
+-- 2
+-- (True, "foo") :: (Bool, [Char])
+-- 3
+-- [(True, "foo")] :: [(Bool, [Char])]
+-- 4
+-- ([True, False], "foo") :: ([Bool], [Char])
+-- 5
+-- not :: Bool -> Bool
+
+-- - Exercise 1.19
+-- 1
+-- head :: [a] -> a, takes first element of a list
+-- 2
+-- last :: [a] -> a, takes last element of a list
+-- 3
+-- init :: [a] -> [a], copies the list and removes the last item
+-- 4
+-- fst :: (a,b) -> a, takes the left side of a tuple
+-- 5
+-- (++) :: [a] -> [a] -> [a], concatenates two lists (of the same type)
+-- 6
+-- flip :: (a -> b -> c) -> b -> a -> c, flips the order of the arguments
+-- 7
+-- flip (++) :: [a] -> [a] -> [a], prepends the first list (second argument) to the second list (third argument)

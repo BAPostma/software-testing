@@ -340,3 +340,44 @@ contradiction3 bf = not (or [ bf p q r | p <- [True, False],
 
 -- 5.
 -- all x element of Primes, some y element of Primes (x < y)
+
+-- - Exercise 2.32
+-- 1.
+-- all x L(x, d)
+
+-- 2.
+-- all x L(d, x)
+
+-- 3.
+-- some x (M(x) ==> M'(x))
+
+-- 4.
+-- some x (B(x) && not F(x))
+
+-- - Exercise 2.33
+-- 1. (B for Bark and B' for Bite
+-- all x ((D(x) && B(x)) ==> not B'(x))
+
+-- 2. (G for Glitters and G' for Gold)
+-- all x (G(x) ==> not G'(x))
+
+-- 3. (F for Friends and d For Diana)
+-- all x, all y ((F(d, x) && F(x, y)) ==> F(d, y)
+
+-- - Exercise 2.34
+-- 1.
+-- all x (not x == c ==> L(x, d))
+
+-- 2.
+-- all x (M(x) ==> some y, some z (W(y) && W(z) && not y = z && (A(x, y) || A(x, z)))
+
+-- 3.
+-- all x (M(x) ==> some y (W(y) ==> M(x, y)) && all z (W(z) ==> M(x, z)) && z = y)
+
+-- - Exercise 2.35
+-- 1.
+-- some x (King(x) && all y (King(y) => y = x) && not Raging(x)
+
+-- 2.
+-- some x (King(x) && all y (King(y) => y = x) && all z (S(z, x) ==> L(z, x)))
+

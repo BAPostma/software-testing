@@ -308,3 +308,35 @@ contradiction3 bf = not (or [ bf p q r | p <- [True, False],
 --                           |
 --                          B(x)
 
+-- - Exercise 2.26
+-- 1.
+-- some x, y element of Q (x < y)
+
+-- 2.
+-- all x element of R, some y element of R (x < y))
+
+-- 3.
+-- all x element of Z, some m, n element of N (x = m - n))
+
+-- - Exercise 2.27
+-- 1.
+-- all x (x element of Q ==> some m, n (m element of Z && n element of Z && n is not equal to 0 && x = m/n))
+
+-- 2.
+-- all x (Fx ==> all y (Dy ==> (Oxy ==> Dxy)))
+
+-- - Exercise 2.31
+-- 1.
+-- some x (x^2 + 1 = 0)
+
+-- 2.
+-- all x element of N, some y element of N (x < y)
+
+-- 3.
+-- all n element of N (0 < n && n < 13 && not (n|13))
+
+-- 4.
+-- all x element of N, some n element of N (0 < x && x < n ** not (x|n))
+
+-- 5.
+-- all x element of Primes, some y element of Primes (x < y)

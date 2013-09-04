@@ -169,3 +169,28 @@ contradiction2 bf = not (or [ bf p q | p <- [True, False],
 contradiction3 bf = not (or [ bf p q r | p <- [True, False],
                                          q <- [True, False],
                                          r <- [True, False]])
+
+-- - Exercise 2.16
+-- 1. The equation x2 + 1 = 0 has no solution.
+-- 2. A largest natural number does exist.
+-- 3. The number 13 is not prime (use d|n for 'd divides n').
+-- 4. The number n is not prime.
+-- 5. There aren't infinitely many primes.
+
+-- - Exercise 2.17
+-- statement: x < y < z
+--          = x < y && y < z
+-- negation : not (x < y && y < z)
+--          = x >= y || y >= z
+
+-- - Exercise 2.18
+-- (P <=> Q) = (P ==> Q) && (Q ==> P)
+--           = (not Q ==> not P) && (not P ==> not Q)
+--           = (not P ==> not Q) && (not Q ==> not P)
+--           = (not P <=> not Q)
+
+-- (not P <=> Q) = (not P ==> Q) && (Q ==> not P)
+--               = (not Q ==> not not P) && (not not P ==> not Q)
+--               = (not Q ==> P) && (P ==> not Q)
+--               = (P ==> not Q) && (not Q ==> P)
+--               = (P <=> not Q)

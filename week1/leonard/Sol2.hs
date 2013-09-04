@@ -194,3 +194,71 @@ contradiction3 bf = not (or [ bf p q r | p <- [True, False],
 --               === (not Q ==> P) && (P ==> not Q)
 --               === (P ==> not Q) && (not Q ==> P)
 --               === (P <=> not Q)
+
+-- - Exercise 2.19
+-- P and Q are logically equivalent iff, no matter the truth values of P and Q, the truth values obtained are the same.
+-- P <=> Q is logically valid iff the outcome will always be True, regardless of the truth values of P and Q.
+-- So iff the outcome of P <=> Q will always be true then P and Q are logically equivalent, because the truth values obtained are the same (regardless the truth values of P and Q).
+
+-- - Exercise 2.20
+-- 1.
+-- not P ==> Q | P ==> not Q
+-- f   t t   t | t t   f   t
+-- f   t t   f | t f   t   f
+-- t   f t   t | f t   f   t
+-- t   f f   f | f t   t   f
+-- Not equivalent (column 3 and 6)
+
+-- 2.
+-- not P ==> Q | Q ==> not P
+-- f   t t   t | t t   f   t
+-- f   t t   f | f t   f   t
+-- t   f t   t | t f   t   f
+-- t   f f   f | f t   t   f
+-- Not equivalent (column 3 and 6)
+
+-- 3. Equivalent, see Theorem 2.10 4c
+
+-- 4.
+-- P ==> (Q ==> R) | Q ==> (P ==> R)
+-- t t    t t   t  | t t    t t   t
+-- t f    t f   f  | t f    t f   f
+-- t t    f t   t  | f t    t t   t
+-- t t    f t   f  | f t    t f   f
+-- f t    t t   t  | t t    f t   t
+-- f t    t f   f  | t t    f t   f
+-- f t    f t   t  | f t    f t   t
+-- f t    f t   f  | f t    f t   f
+-- Equivalent (column 2 and 7)
+
+-- 5.
+-- P ==> (Q ==> R) | (P ==> Q) ==> R
+-- t t    t t   t  |  t t   t  t  t
+-- t f    t f   f  |  t t   t  f  f
+-- t t    f t   t  |  t f   f  t  t
+-- t t    f t   f  |  t f   f  t  f
+-- f t    t t   t  |  f t   t  t  t
+-- f t    t f   f  |  f t   t  f  f
+-- f t    f t   t  |  f t   f  t  t
+-- f t    f t   f  |  f t   f  f  f
+-- Not Equivalent (column 2 and 9)
+
+-- 6.
+-- (P ==> Q) ==> P | P
+--  t t   t  t   t | t
+--  t f   f  t   t | t
+--  f t   t  f   f | f
+--  f t   f  f   f | f
+-- Equivalent (column 4 and 6)
+
+-- 7.
+-- P || Q ==> R | (P ==> R) && (Q ==> R)
+-- t t  t t   t |  t t   t  t   t t   t
+-- t t  t f   f |  t f   f  f   t f   f
+-- t t  f t   t |  t t   t  t   f t   t
+-- t t  f f   f |  t f   f  f   f t   f
+-- f t  t t   t |  f t   t  t   t t   t
+-- f t  t f   f |  f t   f  f   t f   f
+-- f f  f t   t |  f t   t  t   f t   t
+-- f f  f t   f |  f t   f  t   f t   f
+-- Equivalent (column 4 and 9)

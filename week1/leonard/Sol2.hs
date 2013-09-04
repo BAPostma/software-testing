@@ -381,3 +381,60 @@ contradiction3 bf = not (or [ bf p q r | p <- [True, False],
 -- 2.
 -- some x (King(x) && all y (King(y) => y = x) && all z (S(z, x) ==> L(z, x)))
 
+-- - Exercise 2.36
+-- 1.
+-- Some real numbers x are 5 when x^2
+
+-- 2.
+-- There is no largest natural number
+
+-- 3.
+-- For all natural numbers n, 2^n + 1 is a prime
+-- Note: not sure if this is the right answer, because the statement is false
+
+-- 4.
+-- No idea
+
+-- 5.
+-- No idea
+
+-- - Exercise 2.37
+-- 1.
+-- a: false
+-- b: false
+-- c: false
+-- d: false
+-- e: false
+-- f: false
+
+-- 2.
+-- a: false
+-- b: true
+-- c: true
+-- d: false
+-- e: false
+-- f: false
+
+-- 3.
+-- a: false
+-- b: false
+-- c: false
+-- d: false
+-- e: false
+-- f: true
+
+-- 4.
+-- a: true
+-- b: false
+-- c: false
+-- d: false
+-- e: false
+-- f: false
+
+-- 5. TODO
+-- a:
+-- b:
+-- c:
+-- d:
+-- e:
+-- f:

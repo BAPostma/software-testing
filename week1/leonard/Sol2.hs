@@ -262,3 +262,49 @@ contradiction3 bf = not (or [ bf p q r | p <- [True, False],
 -- f f  f t   t |  f t   t  t   f t   t
 -- f f  f t   f |  f t   f  t   f t   f
 -- Equivalent (column 4 and 9)
+
+-- - Exercise 2.21
+-- 1.
+-- not (not (P && Q) && Q)
+
+-- 2.
+-- A 2 letter formula has a truth table of 4 rows. The value of row can either be True or False. So there are 2^4 = 16 truth tables altogether.
+
+-- 3, 4, 5
+-- Don't know
+
+-- - Exercise 2.22
+-- No. I can think of an irrational one, the mean of the 2 rational numbers.
+
+-- - Exercise 2.23
+-- 1.
+-- all x ( A(x) ==> ( B(x) ==> C(x)))
+--                     |
+--                     |
+--         A(x) ==> ( B(x) ==> C(x))
+--          |              |
+--          |              |
+--         A(x)       B(x) ==> C(x)
+--                      |        |
+--                      |        |
+--                     B(x)     C(x)
+
+-- 2. some x ( A(x) && B(x))
+--                 |
+--                 |
+--             A(x) && B(x)
+--              |       |
+--              |       |
+--             A(x)    B(x)
+
+-- 3. some x A(x) && some x B(x)
+--                  |
+--                  |
+--           A(x) && some x B(x)
+--            |            |
+--            |		   |
+--           A(x)    some x B(x)
+--                           |
+--                           |
+--                          B(x)
+

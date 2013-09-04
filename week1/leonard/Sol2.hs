@@ -20,7 +20,7 @@ import TAMO
 --  t  t  f   t  f
 --  f  t  t   f  t
 --  f  f  f   f  f
--- The row P and the row of the second <+> are indeed equivalent
+-- The column P and the column of the second <+> are indeed equivalent
 
 -- - Exercise 2.11
 -- 1.
@@ -29,18 +29,18 @@ import TAMO
 -- t | t   f   t
 -- f | f   t   f
 -- f | f   t   f
--- Rows 1 and 2 are indeed equivalent
+-- Columns 1 and 2 are indeed equivalent
 
 -- 2.
 -- P || P | P
 -- t t  t | t
 -- f f  f | f
--- Rows 2 and 4 are indeed equivalent
+-- Columns 2 and 4 are indeed equivalent
 
 -- P && P | P
 -- t t  t | t
 -- f f  f | f
--- Rows 2 and 4 are indeed equivalent
+-- Columns 2 and 4 are indeed equivalent
 
 -- 3.
 -- (P ==> Q) | not P || Q
@@ -48,14 +48,14 @@ import TAMO
 --  t f   f  | f   t f  f
 --  f t   t  | t   f t  t
 --  f t   f  | t   f t  f
--- Rows 2 and 6 are indeed equivalent
+-- Columns 2 and 6 are indeed equivalent
 
 -- not (P ==> Q) | P && not Q
 -- f    t t   t  | t f  f   t
 -- t    t f   f  | t t  t   f
 -- f    f t   t  | f f  f   t
 -- f    f t   f  | f f  t   f
--- Rows 1 and 6 are indeed equivalent
+-- Columns 1 and 6 are indeed equivalent
 
 -- 4.
 -- (not P ==> not Q) | (Q ==> P)
@@ -63,21 +63,21 @@ import TAMO
 --  f   t t   t   f  |  f t   t
 --  t   f f   f   t  |  t f   f
 --  t   f t   t   f  |  f t   f
--- Rows 3 and 7 are indeed equivalent
+-- Columns 3 and 7 are indeed equivalent
 
 -- (P ==> not Q) | (Q ==> not P)
 --  t f   f   t  |  t f   f   t
 --  t t   t   f  |  f t   f   t
 --  f t   f   t  |  t t   t   f
 --  f t   t   f  |  f t   t   f
--- Rows 2 and 6 are indeed equivalent
+-- Columns 2 and 6 are indeed equivalent
 
 -- (not P ==> Q) | (not Q ==> P)
 --  f   t t   t  |  f   t t   t
 --  f   t t   f  |  t   f t   t
 --  t   f t   t  |  f   t t   f
 --  t   f f   f  |  t   f f   f
--- Rows 3 and 7 are indeed equivalent
+-- Columns 3 and 7 are indeed equivalent
 
 -- 5.
 -- (P <=> Q) | ((P ==> Q) && (Q ==> P)) | ((P && Q) || (not P && not Q))
@@ -85,7 +85,7 @@ import TAMO
 --  t f   f  |   t f   f  f   f t   t   |   t f  f  f   f   t f  t   f
 --  f f   t  |   f t   t  f   t f   f   |   f f  t  f   t   f f  f   t
 --  f t   f  |   f t   f  t   f t   f   |   f f  f  t   t   f t  t   f
--- Rows 2, 7 and 14 are indeed equivalent
+-- Columns 2, 7 and 14 are indeed equivalent
 
 -- 6.
 -- P && Q | Q && P
@@ -93,14 +93,14 @@ import TAMO
 -- t f  f | f f  t
 -- f f  t | t f  f
 -- f f  f | f f  f
--- Rows 2 and 5 are indeed equivalent
+-- Columns 2 and 5 are indeed equivalent
 
 -- P || Q | Q || P
 -- t t  t | t t  t
 -- t t  f | f t  t
 -- f t  t | t t  f
 -- f f  f | f f  f
--- Rows 2 and 4 are indeed equivalent
+-- Columns 2 and 4 are indeed equivalent
 
 -- 7.
 -- See example 2.6
@@ -115,7 +115,7 @@ import TAMO
 -- f f   t f  f  |  f f  t  f  f
 -- f f   f f  t  |  f f  f  f  t
 -- f f   f f  f  |  f f  f  f  f
--- Rows 2 and 9 are indeed equivalent
+-- Columns 2 and 9 are indeed equivalent
 
 -- P || (Q || R) | (P || Q) || R
 -- t t   t t  t  |  t t  t  t  t
@@ -126,7 +126,7 @@ import TAMO
 -- f t   t t  f  |  f t  t  t  f
 -- f t   f t  t  |  f f  f  t  t
 -- f f   f f  f  |  f f  f  f  f
--- Rows 2 and 9 are indeed equivalent
+-- Columns 2 and 9 are indeed equivalent
 
 -- 9.
 -- P && (Q || R) | (P && Q) || (P && R)
@@ -138,7 +138,7 @@ import TAMO
 -- f f   t t  f  |  f f  t  f   f f  f
 -- f f   f t  t  |  f f  f  f   f f  t
 -- f f   f f  f  |  f f  f  f   f f  f
--- Rows 2 and 9 are indeed equivalent
+-- Columns 2 and 9 are indeed equivalent
 
 -- P || (Q && P) | (P || Q) && (P || R)
 -- t t   t t  t  |  t t  t  t   t t  t
@@ -149,7 +149,7 @@ import TAMO
 -- f f   t f  f  |  f t  t  f   f f  f
 -- f f   f f  t  |  f f  f  f   f t  t
 -- f f   f f  f  |  f f  f  f   f f  f
--- Rows 2 and 9 are indeed equivalent
+-- Columns 2 and 9 are indeed equivalent
 
 -- - Exercise 2.13
 tst1a = not True <=> False
@@ -179,18 +179,18 @@ contradiction3 bf = not (or [ bf p q r | p <- [True, False],
 
 -- - Exercise 2.17
 -- statement: x < y < z
---          = x < y && y < z
+--        === x < y && y < z
 -- negation : not (x < y && y < z)
---          = x >= y || y >= z
+--        === x >= y || y >= z
 
 -- - Exercise 2.18
--- (P <=> Q) = (P ==> Q) && (Q ==> P)
---           = (not Q ==> not P) && (not P ==> not Q)
---           = (not P ==> not Q) && (not Q ==> not P)
---           = (not P <=> not Q)
+-- (P <=> Q) === (P ==> Q) && (Q ==> P)
+--           === (not Q ==> not P) && (not P ==> not Q)
+--           === (not P ==> not Q) && (not Q ==> not P)
+--           === (not P <=> not Q)
 
--- (not P <=> Q) = (not P ==> Q) && (Q ==> not P)
---               = (not Q ==> not not P) && (not not P ==> not Q)
---               = (not Q ==> P) && (P ==> not Q)
---               = (P ==> not Q) && (not Q ==> P)
---               = (P <=> not Q)
+-- (not P <=> Q) === (not P ==> Q) && (Q ==> not P)
+--               === (not Q ==> not not P) && (not not P ==> not Q)
+--               === (not Q ==> P) && (P ==> not Q)
+--               === (P ==> not Q) && (not Q ==> P)
+--               === (P <=> not Q)

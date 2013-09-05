@@ -479,3 +479,10 @@ contradiction3 bf = not (or [ bf p q r | p <- [True, False],
 -- P and Q are logically equivalent iff, no matter the truth values of P and Q, the truth values obtained are the same.
 -- P <=> Q is logically valid iff the outcome will always be True, regardless of the truth values of P and Q.
 -- So iff the outcome of P <=> Q will always be true then P and Q are logically equivalent, because the truth values obtained are the same (regardless the truth values of P and Q).
+
+-- - Exercise 2.41
+-- 1: all x element of R (x^2 != 5)
+-- 2: some n element of N, all m element of N (n >= m)
+-- 3: some n element of N, some d element of N (1 < d < (2^n + 1) && d|(2^n + 1))
+-- 4: some n element of N, all m element of N (n >= m || some p element of N (p > n && m > p))
+-- 5: some e element of R+, all n element of N >= n(|a - am| > e)

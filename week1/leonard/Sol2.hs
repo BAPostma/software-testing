@@ -474,3 +474,8 @@ contradiction3 bf = not (or [ bf p q r | p <- [True, False],
 -- d: ??
 -- e: No people
 -- f: ??
+
+-- - Exercise 2.39
+-- P and Q are logically equivalent iff, no matter the truth values of P and Q, the truth values obtained are the same.
+-- P <=> Q is logically valid iff the outcome will always be True, regardless of the truth values of P and Q.
+-- So iff the outcome of P <=> Q will always be true then P and Q are logically equivalent, because the truth values obtained are the same (regardless the truth values of P and Q).

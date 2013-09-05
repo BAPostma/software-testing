@@ -439,7 +439,7 @@ contradiction3 bf = not (or [ bf p q r | p <- [True, False],
 -- e: false
 -- f: false
 
--- - exercise 2.38
+-- - Exercise 2.38
 -- 1.
 -- a: No natural number is smaller than any natural number
 -- b: No natural number is greater than any natural number

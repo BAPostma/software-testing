@@ -499,9 +499,16 @@ contradiction3 bf = not (or [ bf p q r | p <- [True, False],
 -- 3. all x element of A (F(x) && G(x)) === (all x element of A F(x) && all x element of A G(x))
 
 -- - Exercise 2.50
+-- some d > 0 all n some m >= n(|a - a_m| >= d)
 
 -- - Exercise 2.51
+unique :: (a -> Bool) -> [a] -> Bool
+unique p xs = length (filter p xs) == 1
 
 -- - Exercise 2.52
+parity :: [Bool] -> Bool
+parity xs = mod (length (filter (== True) xs)) 2 == 0
 
 -- - Exercise 2.53
+evenNR :: (a -> Bool) -> [a] -> Bool
+evenNR p = parity . map p

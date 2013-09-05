@@ -431,10 +431,10 @@ contradiction3 bf = not (or [ bf p q r | p <- [True, False],
 -- e: false
 -- f: false
 
--- 5. TODO
--- a:
--- b:
--- c:
--- d:
--- e:
--- f:
+-- 5.
+-- a: true (For every x there is and y which is bigger, and no z wich is bigger than x but smaller than y. So it says that every N has a number that comes immediately after it.)
+-- b: false (Same as 'a', but it says that every N has a number that comes immediately before it, which is false for 0)
+-- c: ??
+-- d: ??
+-- e: false
+-- f: false

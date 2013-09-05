@@ -486,3 +486,22 @@ contradiction3 bf = not (or [ bf p q r | p <- [True, False],
 -- 3: some n element of N, some d element of N (1 < d < (2^n + 1) && d|(2^n + 1))
 -- 4: some n element of N, all m element of N (n >= m || some p element of N (p > n && m > p))
 -- 5: some e element of R+, all n element of N >= n(|a - am| > e)
+
+-- - Exercise 2.46
+-- No. If A is the set of Students and F(x) expresses that x is lazy. The formula 'some x not element of A F(x)' states that there are lazy people that are not student, which is true. But the formula 'not some x element of A F(x)' states that no student is lazy, which is false. So the formulas are not equivalent.
+
+-- - Exercise 2.47
+-- No. Let's take the same quantifier as exercise 2.46. The first formula states that there are people wo are not student and not clever. The second formula states that there are students that are not clever. While both statements are true, their meaning is not the same.
+
+-- - Exercise 2.48
+-- 1. all x element of A, all y element of A F(x, y) === all y element of A, all x element of A F(x, y).
+-- 2. See example above exercise 2.46
+-- 3. all x element of A (F(x) && G(x)) === (all x element of A F(x) && all x element of A G(x))
+
+-- - Exercise 2.50
+
+-- - Exercise 2.51
+
+-- - Exercise 2.52
+
+-- - Exercise 2.53

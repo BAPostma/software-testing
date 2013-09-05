@@ -481,11 +481,11 @@ contradiction3 bf = not (or [ bf p q r | p <- [True, False],
 -- So iff the outcome of P <=> Q will always be true then P and Q are logically equivalent, because the truth values obtained are the same (regardless the truth values of P and Q).
 
 -- - Exercise 2.41
--- 1: all x element of R (x^2 != 5)
+-- 1: all x element of R (x^2 /= 5)
 -- 2: some n element of N, all m element of N (n >= m)
 -- 3: some n element of N, some d element of N (1 < d < (2^n + 1) && d|(2^n + 1))
 -- 4: some n element of N, all m element of N (n >= m || some p element of N (p > n && m > p))
--- 5: some e element of R+, all n element of N >= n(|a - am| > e)
+-- 5: some e element of R+, all n element of N >= n(|a - a_m| > e)
 
 -- - Exercise 2.46
 -- No. If A is the set of Students and F(x) expresses that x is lazy. The formula 'some x not element of A F(x)' states that there are lazy people that are not student, which is true. But the formula 'not some x element of A F(x)' states that no student is lazy, which is false. So the formulas are not equivalent.

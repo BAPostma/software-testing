@@ -438,3 +438,39 @@ contradiction3 bf = not (or [ bf p q r | p <- [True, False],
 -- d: ??
 -- e: false
 -- f: false
+
+-- - exercise 2.38
+-- 1.
+-- a: No natural number is smaller than any natural number
+-- b: No natural number is greater than any natural number
+-- c: No rational number is smaller than any rational number
+-- d: All reals greater than 0
+-- e: No one is the father of anyone
+-- f: All people that love anyone
+
+-- 2.
+-- a: Any natural number has the property of not being the greatest
+-- b: Any natural number greater than 0 has the property of not being the smallest
+-- c: Any rational number has the property of not being the greatest
+-- d: All reals greater than 0
+-- e: Some people
+-- f: Some people
+
+-- 3.
+-- Same as 1
+
+-- 4.
+-- a: 0 is the only natural number that is equal or smaller than any natural number
+-- b: No natural number is equal or greater than any natural number
+-- c: No rational number is equal or smaller than any rational number
+-- d: All reals greater than 0
+-- e: No one is father of himself or father of anyone
+-- f: Some people love themself or love anyone
+
+-- 5.
+-- a: Every natural number has a number that comes immediately after it
+-- b: Every natural number greater than 0 has a number that comes immediately before it
+-- c: ??
+-- d: ??
+-- e: No people
+-- f: ??

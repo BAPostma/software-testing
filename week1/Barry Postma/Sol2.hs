@@ -1,6 +1,7 @@
 module Sol2 where
-	import GS
-	import TAMO
+
+import GS
+import TAMO
 	
 {-|
 	Exercise 2.2
@@ -106,6 +107,63 @@ module Sol2 where
 	                                    doesn't go for row 7
 -}
 
+{-|
+	Exercise 2.9
+-}
+test1a   = not True == False
+test1b   = not False == True
+test2  p = False <=> (not p)
+test3a p = (p || True) <=> True
+test3b p = (p && False)  <=> False
+test4a p = (p || False) <=> p
+test4b p = (p && True) <=> p
+test5  p = (p || (not p)) <=> True
+test6  p = (p && (not p)) <=> False
+
+{-|
+	Exercise 2.15
+-}
+contradiction fx = not (fx True)
+-- no idea... :S
+
+{-|
+	Exercise 2.16
+	
+	1. The equation x2 + 1 = 0 does not have a solution.
+	2. There exists a largest natural number.
+	3. The number 13 is not prime.
+	4. The number n is not a prime.
+	5. There is a finite amount of primes.
+-}
+
+{-|
+	Exercise 2.17
+	x < y < z
+	x > y ^ z < y
+	z < y < x
+-}
+
+{-|
+	Exercise 2.18
+-}
+showEqual1 x y = x == y && not x == not y
+showEqual2 x y = not x == y && x == not y
+
+{-|
+	Exercise 2.19
+-}
+showEqualWhenValid x y = logEquiv1 (==> x) not == logEquiv1 (==> y) not
+
+{-|
+	Exercise 2.20
+	1. Not equivalent
+	2. Not equivalent
+	3. Equivalent: contraposition
+	4. Not equivalent
+	5. Not equivalent
+	6. Equivalent: idempotence & contraposition
+	7. Not equivalent
+-}
 
 
 

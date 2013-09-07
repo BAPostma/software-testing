@@ -165,7 +165,22 @@ showEqualWhenValid x y = logEquiv1 (==> x) not == logEquiv1 (==> y) not
 	7. Not equivalent
 -}
 
-
+{-|
+	Exercise 2.21
+	-- 1
+	This doesn't seem to be possible without explicitly checking
+	that the sequence of arguments is in a particular order.
+	-- 2
+	There are 2 columns each can have true or false (2) and per
+	combination there can be two outcomes: (2*2)^2 = 16
+	-- 3
+	I reckon so
+	-- 4
+	Not to my awareness, perhaps by generating permutations of
+	each set of combinations using and, or, xor and not etc.
+	-- 5
+	If so, it would probably grow to a power of 3 in complexity
+-}
 
 
 

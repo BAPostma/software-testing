@@ -366,8 +366,12 @@ exercise2_15c bf = not (or [ bf p q r | 	p <- [True,False],
 -- 3)
 -- ∀x ∈ Z ∃m,n ∈ N (x = m - n)
 
+-- Exercise 2.27
+-- 1)
+-- ∀x (x ∈ Q) ⟹ ∃m,n (m ∈ Z ∧ n ∈ Z ∧ n ≠ 0 ∧ x = m / n)
 
-
+-- 2)
+-- ∀x (Fx ⟹ ∀y (Dy ⟹ ( Oxy ⟹ Bxy ) ) ) 
 
 
 

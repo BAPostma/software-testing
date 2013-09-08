@@ -281,9 +281,7 @@ exercise2_15c bf = not (or [ bf p q r | 	p <- [True,False],
 -- 	f 	t	t	f
 
 -- 2)
--- Total rows in truth table can be calculated by 2 ^ n, where n is the number of variables and 2 the total of options for each variable which in this case is True and False.
--- The total different truth tables can be calculated by r ^ 2, where r is the number of rows in the truth table and 2 the total op options for earch variable.
--- Thus is the case of 2-letter formulas there are (2 ^ n) ^ 2 = (2 ^ 2) ^ 2 = 16 different truth tables that can be made.
+-- Each truth table has 4 rows with for each row 2 options (True and False). This makes 2 ^ 4 = 16 different truth tables.
 
 -- 3) 
 -- Yes. All the possible truth tables for 2-letter formula's are.
@@ -311,10 +309,10 @@ exercise2_15c bf = not (or [ bf p q r | 	p <- [True,False],
 -- 15) 	(P ∨ ¬P) ∧ (Q ∨ ¬Q) 	
 
 -- 4)
--- Yes, I think you can generate formula's for all the different truth tables for a 2-letter formula. You only need a combination of the operators' ∧ (and), ∨ (or), and ¬ (not). And a list of return combinations from all the possible different truth tables.
+-- I think you can but I don't know how.
 
 -- 5) 
--- I think you can do it. But the complexity increases for each extra letter.
+-- A 3-letter formula has truth tables of 2 ^ 3 = 8 rows each with a 2 ^ (2 ^ n) = 2 ^ (2 ^ 3) = 256 different truth tables. Where n stand for the number of letters in the formula.
 
 -- Exercise 2.22
 -- x < y < z
@@ -359,13 +357,13 @@ exercise2_15c bf = not (or [ bf p q r | 	p <- [True,False],
 
 -- Exercise 2.26
 -- 1)
--- some x, y element of Q (x < y)
+-- ∃x,y ∈ Q (x < y)
 
 -- 2)
--- all x element of R, some y element of R (x < y))
+-- ∀x ∈ R ∃y ∈ R (x < y)
 
 -- 3)
--- all x element of Z, some m, n element of N (x = m - n))
+-- ∀x ∈ Z ∃m,n ∈ N (x = m - n)
 
 -- Exercise 2.27
 -- 1)

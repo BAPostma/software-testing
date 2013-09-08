@@ -316,9 +316,254 @@ exercise2_15c bf = not (or [ bf p q r | 	p <- [True,False],
 -- 5) 
 -- I think you can do it. But the complexity increases for each extra letter.
 
+-- Exercise 2.22
+-- x < y < z
+-- For each two rational numbers (x and z) there is a number that's lays inbetween, called the average of the two numbers.
+-- x < (x+z)/2 < z where y equals to (x+z)/2.
 
+-- Exercise 2.23
+-- 1)
+-- 	∀x 	( 	Ax 	⟹ 	( 	Bx 	⟹ 	Cx 	) 	)					
+--					|
+--					|	
+--			Ax 	⟹ 	( 	Bx 	⟹ 	Cx 	)
+--			|				|
+--			|				|
+--			Ax 			Bx 	⟹ 	Cx 	
+-- 						|		|
+--						|		|
+--						Bx 		Cx 	
 
+-- 2)
+-- 	∃x 	( 	Ax 	∧ 	Bx 	)
+-- 				|
+-- 				|
+-- 		 	Ax 	∧ 	Bx 	
+--			|		|
+--			|		|
+--			Ax 		Bx
 
+-- 3)
+-- ∃x 	Ax 	∧ 	∃x 	Bx
+-- 			|
+-- 			|
+-- 		Ax 	∧ 	∃x 	Bx
+--		| 		|	
+--		|		|
+--		Ax		∃x 	Bx
+-- 					|
+-- 					| 					
+-- 					Bx
+
+---
+
+-- Exercise 2.26
+-- 1)
+-- some x, y element of Q (x < y)
+
+-- 2)
+-- all x element of R, some y element of R (x < y))
+
+-- 3)
+-- all x element of Z, some m, n element of N (x = m - n))
+
+-- Exercise 2.27
+-- 1)
+-- all x (x element of Q ==> some m, n (m element of Z && n element of Z && n is not equal to 0 && x = m/n))
+
+-- 2)
+-- all x (Fx ==> all y (Dy ==> (Oxy ==> Dxy)))
+
+-- Exercise 2.31
+-- 1)
+-- some x (x^2 + 1 = 0)
+
+-- 2)
+-- all x element of N, some y element of N (x < y)
+
+-- 3)
+-- all n element of N (0 < n && n < 13 && not (n|13))
+
+-- 4)
+-- all x element of N, some n element of N (0 < x && x < n ** not (x|n))
+
+-- 5)
+-- all x element of Primes, some y element of Primes (x < y)
+
+-- Exercise 2.32
+-- 1)
+-- all x L(x, d)
+
+-- 2)
+-- all x L(d, x)
+
+-- 3)
+-- some x (M(x) ==> M'(x))
+
+-- 4)
+-- some x (B(x) && not F(x))
+
+-- Exercise 2.33
+-- 1) 
+-- (B for Bark and B' for Bite
+-- all x ((D(x) && B(x)) ==> not B'(x))
+
+-- 2)
+-- (G for Glitters and G' for Gold)
+-- all x (G(x) ==> not G'(x))
+
+-- 3) 
+-- (F for Friends and d For Diana)
+-- all x, all y ((F(d, x) && F(x, y)) ==> F(d, y)
+
+-- Exercise 2.34
+-- 1)
+-- all x (not x == c ==> L(x, d))
+
+-- 2)
+-- all x (M(x) ==> some y, some z (W(y) && W(z) && not y = z && (A(x, y) || A(x, z)))
+
+-- 3)
+-- all x (M(x) ==> some y (W(y) ==> M(x, y)) && all z (W(z) ==> M(x, z)) && z = y)
+
+-- Exercise 2.35
+-- 1)
+-- some x (King(x) && all y (King(y) => y = x) && not Raging(x)
+
+-- 2)
+-- some x (King(x) && all y (King(y) => y = x) && all z (S(z, x) ==> L(z, x)))
+
+-- Exercise 2.36
+-- 1)
+-- Some real numbers x are 5 when x^2
+
+-- 2)
+-- There is no largest natural number
+
+-- 3)
+-- For all natural numbers n, 2^n + 1 is a prime
+-- Note: not sure if this is the right answer, because the statement is false
+
+-- 4)
+-- No idea
+
+-- 5)
+-- No idea
+
+-- Exercise 2.37
+-- 1)
+-- a: false
+-- b: false
+-- c: false
+-- d: false
+-- e: false
+-- f: false
+
+-- 2)
+-- a: false
+-- b: true
+-- c: true
+-- d: false
+-- e: false
+-- f: false
+
+-- 3)
+-- a: false
+-- b: false
+-- c: false
+-- d: false
+-- e: false
+-- f: true
+
+-- 4)
+-- a: true
+-- b: false
+-- c: false
+-- d: false
+-- e: false
+-- f: false
+
+-- 5)
+-- a) true (For every x there is and y which is bigger, and no z wich is bigger than x but smaller than y. So it says that every N has a number that comes immediately after it.)
+-- b) false (Same as 'a', but it says that every N has a number that comes immediately before it, which is false for 0)
+-- c) ??
+-- d) ??
+-- e) false
+-- f) false
+
+-- Exercise 2.38
+-- 1)
+-- a) No natural number is smaller than any natural number
+-- b) No natural number is greater than any natural number
+-- c) No rational number is smaller than any rational number
+-- d) All reals greater than 0
+-- e) No one is the father of anyone
+-- f) All people that love anyone
+
+-- 2)
+-- a) Any natural number has the property of not being the greatest
+-- b) Any natural number greater than 0 has the property of not being the smallest
+-- c) Any rational number has the property of not being the greatest
+-- d) All reals greater than 0
+-- e) Some people
+-- f) Some people
+
+-- 3)
+-- Same as 1
+
+-- 4)
+-- a) 0 is the only natural number that is equal or smaller than any natural number
+-- b) No natural number is equal or greater than any natural number
+-- c) No rational number is equal or smaller than any rational number
+-- d) All reals greater than 0
+-- e) No one is father of himself or father of anyone
+-- f) Some people love themself or love anyone
+
+-- 5)
+-- a) Every natural number has a number that comes immediately after it
+-- b) Every natural number greater than 0 has a number that comes immediately before it
+-- c) ??
+-- d) ??
+-- e) No people
+-- f) ??
+
+-- Exercise 2.39
+-- P and Q are logically equivalent iff, no matter the truth values of P and Q, the truth values obtained are the same.
+-- P <=> Q is logically valid iff the outcome will always be True, regardless of the truth values of P and Q.
+-- So iff the outcome of P <=> Q will always be true then P and Q are logically equivalent, because the truth values obtained are the same (regardless the truth values of P and Q).
+
+-- Exercise 2.41
+-- 1) all x element of R (x^2 /= 5)
+-- 2) some n element of N, all m element of N (n >= m)
+-- 3) some n element of N, some d element of N (1 < d < (2^n + 1) && d|(2^n + 1))
+-- 4) some n element of N, all m element of N (n >= m || some p element of N (p > n && m > p))
+-- 5) some e element of R+, all n element of N >= n(|a - a_m| > e)
+
+-- Exercise 2.46
+-- No. If A is the set of Students and F(x) expresses that x is lazy. The formula 'some x not element of A F(x)' states that there are lazy people that are not student, which is true. But the formula 'not some x element of A F(x)' states that no student is lazy, which is false. So the formulas are not equivalent.
+
+-- Exercise 2.47
+-- No. Let's take the same quantifier as exercise 2.46. The first formula states that there are people wo are not student and not clever. The second formula states that there are students that are not clever. While both statements are true, their meaning is not the same.
+
+-- Exercise 2.48
+-- 1. all x element of A, all y element of A F(x, y) === all y element of A, all x element of A F(x, y).
+-- 2. See example above exercise 2.46
+-- 3. all x element of A (F(x) && G(x)) === (all x element of A F(x) && all x element of A G(x))
+
+-- Exercise 2.50
+-- some d > 0 all n some m >= n(|a - a_m| >= d)
+
+-- Exercise 2.51
+unique :: (a -> Bool) -> [a] -> Bool
+unique p xs = length (filter p xs) == 1
+
+-- Exercise 2.52
+parity :: [Bool] -> Bool
+parity xs = mod (length (filter (== True) xs)) 2 == 0
+
+-- Exercise 2.53
+evenNR :: (a -> Bool) -> [a] -> Bool
+evenNR p = parity . map p
 
 
 

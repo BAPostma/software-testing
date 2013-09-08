@@ -11,6 +11,6 @@ Group Participants:
 
 Folder explanation:
 
-Group 		This directory contains the weekly group assignments which should be 				deliverd.
+Group 		This directory contains the weekly group assignments which should be deliverd.
 Individual 	This directory contains all the assignments per group member.
 

@@ -373,10 +373,21 @@ exercise2_15c bf = not (or [ bf p q r | 	p <- [True,False],
 -- 2)
 -- ∀x (Fx ⟹ ∀y (Dy ⟹ ( Oxy ⟹ Bxy ) ) ) 
 
+-- Exercise 2.31
+-- 1)
+-- ∃x (x^2 + 1 = 0)
 
+-- 2) 
+-- ∀x ∈ N ∃y ∈ N (x < y)
 
+-- 3)
+-- ¬∃x ∈ N ( x > 1 ∧ x < 13 ∧ x | 13 )
 
+-- 4) 
+-- ?
 
+-- 5) 
+-- ?
 
 
 

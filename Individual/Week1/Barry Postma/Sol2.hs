@@ -182,7 +182,12 @@ showEqualWhenValid x y = logEquiv1 (==> x) not == logEquiv1 (==> y) not
 	If so, it would probably grow to a power of 3 in complexity
 -}
 
-
+{-|
+	Exercise 2.22
+	Since the rational numbers include fractions of numbers/numbers with decimals,
+	finding a number inbetween is possible even in the cases where there are a lot of
+	decimals by adding another decimal which approaches a middle between the two given numbers.
+-}
 
 
 

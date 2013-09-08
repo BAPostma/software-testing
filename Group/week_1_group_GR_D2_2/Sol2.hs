@@ -374,13 +374,13 @@ exercise2_15c bf = not (or [ bf p q r | 	p <- [True,False],
 
 -- Exercise 2.31
 -- 1)
--- some x (x^2 + 1 = 0)
+-- ∃x (x^2 + 1 = 0)
 
 -- 2)
--- all x element of N, some y element of N (x < y)
+-- ∀x ∈ N ∃y ∈ N (x < y)
 
 -- 3)
--- all n element of N (0 < n && n < 13 && not (n|13))
+-- ¬∃x ∈ N ( x > 1 ∧ x < 13 ∧ x | 13 )
 
 -- 4)
 -- all x element of N, some n element of N (0 < x && x < n ** not (x|n))
@@ -562,47 +562,3 @@ parity xs = mod (length (filter (== True) xs)) 2 == 0
 -- Exercise 2.53
 evenNR :: (a -> Bool) -> [a] -> Bool
 evenNR p = parity . map p
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

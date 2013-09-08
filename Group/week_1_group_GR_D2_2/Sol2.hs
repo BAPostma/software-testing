@@ -353,8 +353,6 @@ exercise2_15c bf = not (or [ bf p q r | 	p <- [True,False],
 -- 					| 					
 -- 					Bx
 
----
-
 -- Exercise 2.26
 -- 1)
 -- ∃x,y ∈ Q (x < y)
@@ -367,10 +365,12 @@ exercise2_15c bf = not (or [ bf p q r | 	p <- [True,False],
 
 -- Exercise 2.27
 -- 1)
--- all x (x element of Q ==> some m, n (m element of Z && n element of Z && n is not equal to 0 && x = m/n))
+-- ∀x (x ∈ Q) ⟹ ∃m,n (m ∈ Z ∧ n ∈ Z ∧ n ≠ 0 ∧ x = m / n)
 
 -- 2)
--- all x (Fx ==> all y (Dy ==> (Oxy ==> Dxy)))
+-- ∀x (Fx ⟹ ∀y (Dy ⟹ ( Oxy ⟹ Bxy ) ) ) 
+
+---
 
 -- Exercise 2.31
 -- 1)

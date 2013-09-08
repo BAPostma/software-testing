@@ -357,8 +357,14 @@ exercise2_15c bf = not (or [ bf p q r | 	p <- [True,False],
 -- 					Bx
 
 -- Exercise 2.26
--- 
+-- 1)
+-- ∃x,y ∈ Q (x < y)
 
+-- 2)
+-- ∀x ∈ R ∃y ∈ R (x < y)
+
+-- 3)
+-- ∀x ∈ Z ∃m,n ∈ N (x = m - n)
 
 
 

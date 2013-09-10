@@ -42,19 +42,3 @@ equiv fa fb = (map (\ v -> eval v fa) (allVals fx))
 			  (map (\ v -> eval v fb) (allVals fx))
 			  where
 				  fx = Equiv fa fb
-
-
-{-|
-	TEMP NOTES:
-	-- contradiction: contradiction (Cnj [(Prop 6), (Cnj [(Neg (Prop 6)), (Prop 6)]) ] )
-
-	-- tautology: a or not a
-	(Dsj [(Prop 1), (Neg (Prop 1))])
-	 A formula is satisfiable if it is true under at least one interpretation, and thus a tautology is a formula whose negation is unsatisfiable.
-	 
-	given x as formula
-	tautology = not (satisfiable (Neg f))
-	
-	-- {eval valuation([(Name,Bool)]) Form} {allVals Form}
-
--}

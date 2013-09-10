@@ -9,17 +9,14 @@ import Week2
 	A definition of wheter an expression is a contradiction.
 -}
 contradiction :: Form -> Bool
-contradiction f = not (any (\ v -> eval v f) (allVals f))
+contradiction f = not (satisfiable f)
 
 {-|
 	Exercise 2b
 	A definition of wheter an expression is a tautology.
-	
-	The implementation is created based on this statement:
-	"A formula is satisfiable if it is true under at least one interpretation, and thus a tautology is a formula whose negation is unsatisfiable." (src. Wikipedia)
 -}
 tautology :: Form -> Bool
-tautology f = not (satisfiable (Neg f))
+tautology f = all (\ v -> eval v f) (allVals f)
 
 {-|
 	Exercise 2c

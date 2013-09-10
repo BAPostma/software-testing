@@ -2,12 +2,16 @@ module Exercise3 where
 
 import Week2
 
--- precondition: input is arrow-free and in NNF
+-- precondition: input is a formula
 cnf :: Form -> Form
-cnf (Prop x) = Prop x
-cnf (Neg f) = Neg f
-cnf (Cnj fs) = Cnj (map cnf fs)
-cnf (Dsj fs) = dist (map cnf fs)
+cnf = cnf' . nnf . arrowfree
+
+-- precondition: input is arrow-free and in NNF
+cnf' :: Form -> Form
+cnf' (Prop x) = Prop x
+cnf' (Neg f) = Neg f
+cnf' (Cnj fs) = Cnj (map cnf' fs)
+cnf' (Dsj fs) = dist (map cnf' fs)
 
 -- precondition: input is CNF
 dist :: [Form] -> Form

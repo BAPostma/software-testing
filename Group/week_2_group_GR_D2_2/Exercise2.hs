@@ -23,20 +23,29 @@ tautology f = not (satisfiable (Neg f))
 
 {-|
 	Exercise 2c
-	A definition of wheter an expression is a logical entailment.
+	A definition of wheter an expression is a logical entailment. (p -> q)
+	Rewriting entailment: (p => q) <=> ¬p v q
 -}
--- entails :: Form -> Form -> Bool
-
+entails :: Form -> Form -> Bool
+entails fa fb = all (\ v -> (eval v fx) && (eval v fy)) (allVals fx)
+				where
+					fx = (Impl fa fb)
+					fy = (Dsj [(Neg fa), fb])
 
 {-|
 	Exercise 2d
 	A definition of wheter an expression is a logical equivalence.
 -}
--- equiv :: Form -> Form -> Bool
+equiv :: Form -> Form -> Bool
+equiv fa fb = (map (\ v -> eval v fa) (allVals fx))
+				==
+			  (map (\ v -> eval v fb) (allVals fx))
+			  where
+				  fx = Equiv fa fb
 
 
 {-|
-	NOTES:
+	TEMP NOTES:
 	-- contradiction: contradiction (Cnj [(Prop 6), (Cnj [(Neg (Prop 6)), (Prop 6)]) ] )
 
 	-- tautology: a or not a

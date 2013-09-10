@@ -1,0 +1,25 @@
+=== Exercise 2 ===
+
+Description method of checking the definitions:
+- Contradictions
+According to the definition, an expression is a contradiction when all of its
+evaluations yield false. Considering this definition, it is the opposite of
+a tautology i.e. a negated tautological expression is a contradiction.
+
+The most basic form of a contradiction is P ^ ¬P. By using several formulae
+that have been proven to be contradictions on paper, we can test the method
+that was written to yield the expected results.
+Note that Prop 1 represents p and Prop 2 represents q.
+
+p ^ ¬p					(Cnj [(Prop 1), (Neg (Prop 1))])
+(q v q) ^ (¬p)^(¬q)		(Cnj [(Dsj [(Prop 1), (Prop 2)]), (Cnj [(Neg (Prop 1)), (Neg (Prop 2))])])
+
+
+
+
+Estimated time spent:
+- Understanding the given definition of satisfiable		1:00 hrs
+- Playing around with the syntax to try out satisfiable	0:30 hrs
+- Implementing contradiction & tautology				1:00 hrs
+- Implementing entailment (impl.) & equivalence			1:15 hrs
+- Testing												?    hrs

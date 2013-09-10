@@ -56,3 +56,8 @@ checkTriangles s n = [ printTriangles x y z | x <- [0..n],
 printTriangles :: Integer -> Integer -> Integer -> (Integer, Integer, Integer)
 printTriangles x y z = (x,y,z)
 ```
+
+Some test example:
+
+
+

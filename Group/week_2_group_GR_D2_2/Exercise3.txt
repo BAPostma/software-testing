@@ -1,6 +1,6 @@
 Indication of time spent
 ------------------------
-6 hours
+7 hours
 
 
 Test report

@@ -46,6 +46,21 @@ cnf (Equiv p q)
 (isCNF . cnf) (Equiv p q)
 True
 
+cnf form1
+*(*(*(+(+(-1 2) 1) +(+(-1 2) -2)) *(+(+(-1 2) -2) +(+(-1 2) 1))) *(*(+(+(2 -1) 1) +(+(2 -1) -2)) *(+(+(2 -1) -2) +(+(2 -1) 1))))
+(isCNF . cnf) form1
+True
+
+cnf form2
+*(*(*(+(+(-1 2) 1) +(+(-1 2) -2)) *(+(+(-1 2) -1) +(+(-1 2) 2))) *(*(+(+(1 -2) 1) +(+(1 -2) -2)) *(+(+(1 -2) -1) +(+(1 -2) 2))))
+(isCNF . cnf) form2
+True
+
+cnf form3
+*(*(+(+(1 2) +(-1 3)) +(+(1 -3) +(-1 3))) *(+(+(-2 2) +(-1 3)) +(+(-2 -3) +(-1 3))))
+(isCNF . cnf) form3
+True
+
 2. Function cnf'
 - Explanation:
 Translates a formula that is arrow-free and in NNF to a CNF

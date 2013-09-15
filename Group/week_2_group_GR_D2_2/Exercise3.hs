@@ -1,4 +1,6 @@
-module Exercise3 where
+module Exercise3
+
+where
 
 import Week2
 

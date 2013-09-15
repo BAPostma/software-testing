@@ -1,5 +1,9 @@
-module TriangleExercise where
-	
+module Exercise1
+
+where
+
+import Week2
+
 data Shape = NoTriangle | Equilateral | Isosceles | Rectangular | Other deriving (Eq,Show)
 
 triangle :: Integer -> Integer -> Integer -> Shape

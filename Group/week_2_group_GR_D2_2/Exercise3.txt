@@ -1,10 +1,9 @@
-Indication of time spent
-------------------------
+=== Exercise 3 ===
+
+--- Indication of time spent ---
 7 hours
 
-
-Test report
------------
+--- Test report ---
 Explanation of functions:
 1. Function cnf
 - Explanation:

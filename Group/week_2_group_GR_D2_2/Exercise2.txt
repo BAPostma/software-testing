@@ -1,0 +1,53 @@
+=== Exercise 2 ===
+
+Description method of checking the definitions:
+- Contradictions
+According to the definition, an expression is a contradiction when all of its
+evaluations yield false. Considering this definition, it is the opposite of
+a tautology i.e. a negated tautological expression is a contradiction.
+The most basic form of a contradiction is P ^ ¬P. By using several formulae
+that have been proven to be contradictions on paper, we can test the method
+that was written to yield the expected results. See the expressions under A.
+Also when we present the expressions under B that are tautologies,
+they cannot be contradictions by definition. 
+
+- Tautology
+The implementation is created based on this statement:
+"A formula is satisfiable if it is true under at least one interpretation, thus
+a tautology is a formula whose negation is unsatisfiable." (src. Wikipedia)
+When testing for tautologies we used the expressions listed under B.
+By definition, a tautology cannot be a contradiction therefor, passing in
+the contradictions under A proved that the not tautology check was correct.
+
+- Implication (entailment)
+Not sure how to verify/test this properly.
+
+- Equivalence
+In logical equivalence, the thruth table outcomes of the expressions on either side
+of the double arrow (<==>) is expected to be equal. When testing for this, obvious
+and less obvious equivalences were used, as listed under D.
+
+--- Expressions ---
+Note that Prop 1 represents p and Prop 2 represents q.
+
+A. Contradictions
+p ^ ¬p					(Cnj [(Prop 1), (Neg (Prop 1))])
+(p v q) ^ (¬p ^ ¬q)		(Cnj [(Dsj [(Prop 1), (Prop 2)]), (Cnj [(Neg (Prop 1)), (Neg (Prop 2))])])
+
+B. Tautologies
+p ^ p					(Cnj [(Prop 1), (Prop 1)])
+(p v q) v (¬p ^ ¬q)		(Dsj [(Dsj [(Prop 1), (Prop 2)]), (Cnj [(Neg (Prop 1)), (Neg (Prop 2))])])
+
+C. Implications
+p v ¬p => q				Impl (Dsj [(Prop 1), (Neg (Prop 1))]) (Prop 2)
+
+D. Equivalence
+p and p					(Prop 1) (Prop 1)
+p v q and q v p			(Dsj [(Prop 1), (Prop 2)]) (Dsj [(Prop 2), (Prop 1)])
+¬(p => q) and ¬p ^ q	(Neg (Impl (Prop 1) (Prop 2))) (Cnj [(Neg (Prop 1)), (Prop 2)]) // check deze
+
+--- Estimated time spent ---
+- Understanding the given definition of satisfiable		1:00 hrs
+- Playing around with the syntax to try out satisfiable	0:30 hrs
+- Implementing contradiction & tautology				1:00 hrs
+- Implementing entailment (impl.) & equivalence			1:15 hrs

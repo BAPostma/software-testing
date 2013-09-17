@@ -1,13 +1,13 @@
 module Lab3 where
 
+import Week2
+import Exercise3Improved
+import Techniques
 import System.Random
 import Data.List
 import Data.Ord
 
 -- Exercise 3
-getRandomInt :: Int -> IO Int
-getRandomInt n = getStdRandom (randomR (0,n))
-
 genIntList :: IO [Int]
 genIntList = do
   x <- getRandomInt 10
@@ -38,3 +38,26 @@ testIsPermutations 0 = print ("Done testing")
 testIsPermutations n = do testIsPermutation
                           testIsPermutations (n-1)
 
+-- Exercise 6
+-- See also Exercise6.txt
+
+-- Function to get random CNFs
+getRandomCNFs :: Int -> IO [Form]
+getRandomCNFs n = do
+  fs <- getRandomFs n
+  return (map cnf fs)
+
+-- Test function for CNF
+testCNFs :: Int -> IO ()
+testCNFs n = do
+  fs <- getRandomCNFs n
+  testCNF n fs
+
+-- Test function for CNF
+testCNF :: Int -> [Form] -> IO ()
+testCNF n [] = print (show n ++ " tests passed")
+testCNF n (f:fs) =
+  if isCNF f
+  then do print ("pass on: " ++ show f)
+          testCNF n fs
+  else error ("failed test on: " ++ show f)

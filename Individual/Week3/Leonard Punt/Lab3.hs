@@ -9,8 +9,8 @@ getRandomInt n = getStdRandom (randomR (0,n))
 
 genIntList :: IO [Int]
 genIntList = do
-               x <- getRandomInt 50
-               sequence (replicate x (getRandomInt x))
+  x <- getRandomInt 50
+  sequence (replicate x (getRandomInt x))
 
 -- Exercise 4
 isPermutation :: Eq a => [a] -> [a] -> Bool

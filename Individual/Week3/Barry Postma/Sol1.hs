@@ -6,31 +6,28 @@ import Data.List
 import Data.Char
 import System.Random
 
+import Week2
 import Week3
 
 {-|
-	Assignment 3
+	Exercise 3
+	Performed with a little help from team members as there were lots of difficulties
+	in dealing with the IO Int array and converting/typecasting it...
 -}
+
+-- given code
 getRandomInt :: Int -> IO Int
 getRandomInt n = getStdRandom (randomR (0,n))
 
---getRandomInt' :: Int
---getRandomInt' = 
+-- written code
+getIntList :: Int -> Int -> IO [Int]
+getIntList maxint length = sequence (replicate length (getRandomInt maxint))
 
---getIntList :: IO [Int]
---getIntList = do
---			 lst <- (getRandomInt 10)
---			 return [0..lst]
-
-{-|
-getIntList :: IO [Int]
-getIntList = do
-			 lst <- (getRandomInt 10)
-			 return [0..lst]
--}
+getIntList' :: IO [Int]
+getIntList' = getIntList 10 10
 
 {-|
-	Assignment 4
+	Exercise 4
 -}
 isPermutation :: Eq a => [a] -> [a] -> Bool
 isPermutation [] [] = True
@@ -40,4 +37,10 @@ isPermutation xs ys | (length xs /= length ys) = error $ "Lists are not of equal
 isPermutation' :: Eq a => [a] -> [a] -> Bool
 isPermutation' (x:xs) ys | null xs = True
 						 | otherwise = any (x==) ys && isPermutation' xs ys
+
+{-|
+	Exercise 7
+-}
+
+
 

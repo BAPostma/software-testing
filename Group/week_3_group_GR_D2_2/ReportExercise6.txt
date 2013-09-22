@@ -1,0 +1,53 @@
+1. Tests for CNF:
+- These three functions test if a function is CNF:
+isCNF :: Form -> Bool
+isCNF (Cnj fs) = and (map isCNF fs)
+isCNF (Dsj fs) = and (map isDist fs)
+isCNF f = isLiteral f
+
+isDist :: Form -> Bool
+isDist (Cnj _) = False
+isDist (Dsj fs) = and (map isDist fs)
+isDist f = isLiteral f
+
+isLiteral :: Form -> Bool
+isLiteral (Prop x) = True
+isLiteral (Neg (Prop x)) = True
+isLiteral _ = False
+
+- This functions generates random CNFs (using the CNF program we wrote last week)
+getRandomCNFs :: Int -> IO [Form]
+getRandomCNFs n = do
+  fs <- getRandomFs n
+  print (fs)
+  return (map cnf fs)
+
+- These two functions test if the randomly generated CNFs are actually CNFs
+testCNFs :: Int -> IO ()
+testCNFs n = do
+  fs <- getRandomCNFs n
+  testCNF n fs
+
+testCNF :: Int -> [Form] -> IO ()
+testCNF n [] = print (show n ++ " tests passed")
+testCNF n (f:fs) =
+  if isCNF f
+  then do print ("pass on: " ++ show f)
+          testCNF n fs
+  else error ("failed test on: " ++ show f)
+
+2. Report on the results
+- This test demonstrated we forgot to cover the case for empty Disjunctions in the CNF program we wrote last week.
+- Example of running the test:
+*Lab3> testCNFs 10
+"pass on: *()"
+"pass on: *(10)"
+"pass on: *(4 6 8 14 14)"
+"pass on: 3"
+"pass on: 1"
+"pass on: 13"
+"pass on: +(4 +(15 +(1 +(9 2))))"
+"pass on: 12"
+"pass on: *(17 11 21 9 4)"
+"pass on: 14"
+"10 tests passed"

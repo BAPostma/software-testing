@@ -13,6 +13,8 @@ import Week3
 	Exercise 3
 	Performed with a little help from team members as there were lots of difficulties
 	in dealing with the IO Int array and converting/typecasting it...
+	
+	Time taken (investigation on IO ints predominantly) 4 hrs.
 -}
 
 -- given code
@@ -28,6 +30,7 @@ getIntList' = getIntList 10 10
 
 {-|
 	Exercise 4
+	Time taken 2 hrs
 -}
 isPermutation :: Eq a => [a] -> [a] -> Bool
 isPermutation [] [] = True
@@ -41,6 +44,6 @@ isPermutation' (x:xs) ys | null xs = True
 {-|
 	Exercise 7
 -}
-
+-- Not sure how to approach this
 
 

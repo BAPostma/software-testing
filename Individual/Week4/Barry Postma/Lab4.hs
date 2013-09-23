@@ -16,19 +16,18 @@ randomSet = do
 			return (list2set intl)
 			
 {-|
-	Exercise 3.1
+	Exercise 3
+	Time taken: approx. 45 mins
 -}
+-- 3.1
 intersection :: Eq a => (Set a) -> (Set a) -> (Set a)
 intersection (Set s1) (Set s2) = Set (intersect s1 s2)
 
-{-|
-	Exercise 3.2
--}
+-- 3.2
 union' :: Eq a => (Set a) -> (Set a) -> (Set a)
 union' (Set s1) (Set s2) = Set (Data.List.union s1 s2)
 
-{-|
-	Exercise 3.3
--}
+-- 3.3
 diff :: Eq a => (Set a) -> (Set a) -> (Set a)
 diff (Set s1) (Set s2) = union' (Set (s1 \\ s2)) (Set (s2 \\ s1))
+

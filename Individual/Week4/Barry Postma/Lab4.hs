@@ -27,3 +27,8 @@ intersection (Set s1) (Set s2) = Set (intersect s1 s2)
 union' :: Eq a => (Set a) -> (Set a) -> (Set a)
 union' (Set s1) (Set s2) = Set (Data.List.union s1 s2)
 
+{-|
+	Exercise 3.3
+-}
+diff :: Eq a => (Set a) -> (Set a) -> (Set a)
+diff (Set s1) (Set s2) = union' (Set (s1 \\ s2)) (Set (s2 \\ s1))

@@ -21,3 +21,9 @@ randomSet = do
 intersection :: Eq a => (Set a) -> (Set a) -> (Set a)
 intersection (Set s1) (Set s2) = Set (intersect s1 s2)
 
+{-|
+	Exercise 3.2
+-}
+union' :: Eq a => (Set a) -> (Set a) -> (Set a)
+union' (Set s1) (Set s2) = Set (Data.List.union s1 s2)
+

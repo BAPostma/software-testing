@@ -60,7 +60,7 @@ testSetOperation = do
       in
         print ("Set 1: " ++ show(set1) ++ " Set 2: " ++ show(set2) ++ " Intersection: " ++ show(ints) ++ " Union: " ++ show(uni) ++ " Difference: " ++ show(differ))
 
--- Test function for isPermutation
+-- Test function for set operations
 testSetOperations :: Int -> IO ()
 testSetOperations 0 = print ("Done testing")
 testSetOperations n = do testSetOperation

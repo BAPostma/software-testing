@@ -56,16 +56,16 @@ diffProp2 :: Ord a => Set a -> Bool
 diffProp2 s = differenceSet s s == emptySet
 
 -- test functions
-genIntSets :: Int -> IO [(Set Int)]
-genIntSets n = sequence (replicate n (genIntSet))
+genIntSets :: Int -> IO [Set Int]
+genIntSets n = sequence (replicate n genIntSet)
 
-tests :: Int -> ((Set Int) -> Bool) -> IO ()
+tests :: Int -> (Set Int -> Bool) -> IO ()
 tests n prop = do
   xs <- genIntSets n
   test prop xs
 
-test :: ((Set Int) -> Bool) -> [(Set Int)] -> IO ()
-test prop [] = print ("tests passed")
+test :: (Set Int -> Bool) -> [Set Int] -> IO ()
+test prop [] = print "tests passed"
 test prop (x:xs) =
   if prop x
   then do print ("pass on: " ++ show x)
@@ -81,7 +81,7 @@ infixr 5 @@
 r @@ s = nub [ (x,z) | (x,y) <- r, (w,z) <- s, y == w ]
 
 trClos :: Ord a => Rel a -> Rel a
-trClos r = lfp trClos' r
+trClos = lfp trClos'
 
 trClos' :: Ord a => Rel a -> Rel a
 trClos' [] = []
@@ -95,7 +95,7 @@ transitiveProp1 :: Ord a => Rel a -> Bool
 transitiveProp1 r = containsSubSet r (r @@ r)
 
 containsSubSet :: Eq a => Rel a -> Rel a -> Bool
-containsSubSet r = all (\x -> elem x r)
+containsSubSet r = all (\ x -> elem x r)
 
 -- test functions
 genRel :: IO (Rel Int)
@@ -104,8 +104,8 @@ genRel = do
   ys <- genIntList
   return (zip xs ys)
 
-genRels :: Int -> IO [(Rel Int)]
-genRels n = sequence (replicate n (genRel))
+genRels :: Int -> IO [Rel Int]
+genRels n = sequence (replicate n genRel)
 
 testTrClosses :: Int -> (Rel Int -> Bool) -> IO ()
 testTrClosses n prop = do
@@ -113,7 +113,7 @@ testTrClosses n prop = do
   testTrClos prop rs
 
 testTrClos :: (Rel Int -> Bool) -> [Rel Int] -> IO ()
-testTrClos prop [] = print ("tests passed")
+testTrClos prop [] = print "tests passed"
 testTrClos prop (x:xs) =
   if prop x'
   then do print ("pass on: " ++ show x')

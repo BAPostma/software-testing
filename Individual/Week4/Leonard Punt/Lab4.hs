@@ -85,4 +85,4 @@ trClos r = lfp trClos' r
 
 trClos' :: Ord a => Rel a -> Rel a
 trClos' [] = []
-trClos' r = nub (r ++ (r @@ r))
+trClos' r = sort (nub (r ++ (r @@ r)))

@@ -86,3 +86,36 @@ trClos r = lfp trClos' r
 trClos' :: Ord a => Rel a -> Rel a
 trClos' [] = []
 trClos' r = sort (nub (r ++ (r @@ r)))
+
+-- Exercise 5 - Time spent:
+-- see Exercise5.txt for test report
+-- properties
+-- - a relation R is transitive if R^2 is subset of  R
+trClosProp1 :: Ord a => Rel a -> Bool
+trClosProp1 r = containsSubSet r' (r' @@ r') where r' = (trClos r)
+
+containsSubSet :: Eq a => Rel a -> Rel a -> Bool
+containsSubSet r = all (\x -> elem x r)
+
+-- test functions
+genRel :: IO (Rel Int)
+genRel = do
+  xs <- genIntList
+  ys <- genIntList
+  return (zip xs ys)
+
+genRels :: Int -> IO [(Rel Int)]
+genRels n = sequence (replicate n (genRel))
+
+testTrClosses :: Int -> (Rel Int -> Bool) -> IO ()
+testTrClosses n prop = do
+  rs <- genRels n
+  testTrClos prop rs
+
+testTrClos :: (Rel Int -> Bool) -> [Rel Int] -> IO ()
+testTrClos prop [] = print ("tests passed")
+testTrClos prop (x:xs) =
+  if prop x
+  then do print ("pass on: " ++ show x)
+          testTrClos prop xs
+  else error ("failed test on: " ++ show x)

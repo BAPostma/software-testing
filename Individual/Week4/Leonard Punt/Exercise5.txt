@@ -1,0 +1,17 @@
+1. Properties:
+-- - a relation R is transitive if R^2 is subset of  R
+trClosProp1 :: Ord a => Rel a -> Bool
+trClosProp1 r = containsSubSet r' (r' @@ r') where r' = (trClos r)
+
+containsSubSet :: Eq a => Rel a -> Rel a -> Bool
+containsSubSet r = all (\x -> elem x r)
+
+2. Report on the results
+- Examples of running the tests:
+*Lab4> testTrClosses 5 trClosProp1
+"pass on: [(2,2),(2,3),(9,9),(4,6),(2,2),(8,7),(9,6),(7,3),(0,7),(0,5)]"
+"pass on: [(1,7),(9,1),(1,4),(8,10),(8,8),(7,4),(6,9),(4,5),(3,5),(9,2)]"
+"pass on: [(3,8),(0,9),(3,8),(1,9),(2,8),(3,9),(6,1),(1,0),(5,2),(2,7)]"
+"pass on: [(1,2),(1,1),(6,0),(3,9),(9,10),(3,5),(3,0),(1,7),(9,1),(0,7)]"
+"pass on: [(9,8),(6,0),(3,3),(1,4),(7,5),(4,4),(8,3),(9,4),(1,6),(6,0)]"
+"tests passed"

@@ -1,0 +1,93 @@
+1. Properties:
+-- - intersect with empty set should return empty input set
+intersectProp1 :: Ord a => Set a -> Bool
+intersectProp1 s = intersectSet s emptySet == emptySet
+-- - idempotence
+intersectProp2 :: Ord a => Set a -> Bool
+intersectProp2 s = intersectSet s s == s
+-- - commutativity
+intersectProp3 :: (Num a, Ord a) => Set a -> Bool
+intersectProp3 s = intersectSet s anySet == intersectSet anySet s
+
+-- - union with empty set should return set
+unionProp1 :: Ord a => Set a -> Bool
+unionProp1 s = unionSet1 s emptySet == s
+-- - idempotence
+unionProp2 :: Ord a => Set a -> Bool
+unionProp2 s = unionSet1 s s == s
+-- - commutativity
+unionProp3 :: (Num a, Ord a) => Set a -> Bool
+unionProp3 s = unionSet s anySet == unionSet anySet s
+
+-- - difference with empty set should return input set
+diffProp1 :: Ord a => Set a -> Bool
+diffProp1 s = differenceSet s emptySet == s
+-- - difference between 2 same sets should be empty set
+diffProp2 :: Ord a => Set a -> Bool
+diffProp2 s = differenceSet s s == emptySet
+
+2. Report on the results
+- Examples of running the tests:
+*Lab4> tests 5 intersectProp1
+"pass on: {0,1,2,3,8,9,10}"
+"pass on: {1,2,4,8,9,10}"
+"pass on: {0,1,2,5,8,9}"
+"pass on: {1,2,6,8,9,10}"
+"pass on: {1,3,4,7,8,9,10}"
+"tests passed"
+
+*Lab4> tests 5 intersectProp2
+"pass on: {1,4,5,7,9,10}"
+"pass on: {0,1,2,4,6,9,10}"
+"pass on: {0,1,2,3,5,7,9,10}"
+"pass on: {0,1,3,4,7,10}"
+"pass on: {1,2,3,5,8,9,10}"
+"tests passed"
+
+*Lab4> tests 5 intersectProp3
+"pass on: {1,2,3,7,8,9}"
+"pass on: {0,1,3,4,5,6,9}"
+"pass on: {0,2,4,5,6,7,9}"
+"pass on: {1,2,3,4,5,6,8,9}"
+"pass on: {0,1,2,4,5,8,9}"
+"tests passed"
+
+*Lab4> tests 5 unionProp1
+"pass on: {2,3,5,6,8,9,10}"
+"pass on: {0,1,2,4,5,7,8,10}"
+"pass on: {1,2,4,5,6,7,8}"
+"pass on: {1,2,3,5,7,8,10}"
+"pass on: {0,2,4,6,7,8,9,10}"
+"tests passed"
+
+*Lab4> tests 5 unionProp2
+"pass on: {0,1,4,6,8,9,10}"
+"pass on: {0,1,3,4,6,7,9}"
+"pass on: {0,3,4,5,7,8,9}"
+"pass on: {0,1,3,4,6,8,10}"
+"pass on: {0,2,3,4,6,7,8,9}"
+"tests passed"
+
+*Lab4> tests 5 unionProp3
+"pass on: {0,1,2,3,4,8,10}"
+"pass on: {0,4,5,9,10}"
+"pass on: {1,2,5,6,8,9,10}"
+"pass on: {0,1,2,3,4,8}"
+"pass on: {0,1,2,3,5,7,9,10}"
+"tests passed"
+
+*Lab4> tests 5 diffProp1
+"pass on: {0,1,2,5,9,10}"
+"pass on: {0,5,7,8}"
+"pass on: {0,2,3,4,5,7,8,9}"
+"pass on: {0,5,6,8,10}"
+"pass on: {2,3,4,7,8,10}"
+"tests passed"
+
+*Lab4> tests 5 diffProp2
+"pass on: {0,2,4,5,7,10}"
+"pass on: {0,1,3,5,7,9}"
+"pass on: {0,1,3,4,5,6}"
+"pass on: {0,2,3,4,7}"
+"pass on: {0,2,4,6,7,8,9,10}"
+"tests passed"

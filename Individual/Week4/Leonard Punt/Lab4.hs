@@ -91,8 +91,8 @@ trClos' r = sort (nub (r ++ (r @@ r)))
 -- see Exercise5.txt for test report
 -- properties
 -- - a relation R is transitive if R^2 is subset of  R
-trClosProp1 :: Ord a => Rel a -> Bool
-trClosProp1 r = containsSubSet r' (r' @@ r') where r' = (trClos r)
+transitiveProp1 :: Ord a => Rel a -> Bool
+transitiveProp1 r = containsSubSet r (r @@ r)
 
 containsSubSet :: Eq a => Rel a -> Rel a -> Bool
 containsSubSet r = all (\x -> elem x r)
@@ -115,7 +115,8 @@ testTrClosses n prop = do
 testTrClos :: (Rel Int -> Bool) -> [Rel Int] -> IO ()
 testTrClos prop [] = print ("tests passed")
 testTrClos prop (x:xs) =
-  if prop x
-  then do print ("pass on: " ++ show x)
+  if prop x'
+  then do print ("pass on: " ++ show x')
           testTrClos prop xs
-  else error ("failed test on: " ++ show x)
+  else error ("failed test on: " ++ show x')
+  where x' = trClos x

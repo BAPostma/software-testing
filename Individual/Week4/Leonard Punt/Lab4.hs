@@ -3,6 +3,7 @@ module Lab4 where
 import SetOrd
 import Lab3
 import Data.List
+import Week4
 
 -- Exercise 2 - Time spent: 45 minutes
 genIntSet :: IO (Set Int)
@@ -70,3 +71,18 @@ test prop (x:xs) =
   then do print ("pass on: " ++ show x)
           test prop xs
   else error ("failed test on: " ++ show x)
+
+-- Exercise 4 - Time spent: 1 hour
+type Rel a = [(a,a)]
+
+infixr 5 @@
+
+(@@) :: Eq a => Rel a -> Rel a -> Rel a
+r @@ s = nub [ (x,z) | (x,y) <- r, (w,z) <- s, y == w ]
+
+trClos :: Ord a => Rel a -> Rel a
+trClos r = lfp trClos' r
+
+trClos' :: Ord a => Rel a -> Rel a
+trClos' [] = []
+trClos' r = nub (r ++ (r @@ r))

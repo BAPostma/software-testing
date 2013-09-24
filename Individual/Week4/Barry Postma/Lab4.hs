@@ -5,6 +5,7 @@ where
 import Data.List
 import SetOrd
 import Week3
+import Week4
 
 {-|
 	Exercise 2
@@ -59,7 +60,25 @@ testDifference = do
 				 return testSetDifference
 
 
+{-|
+	Exercise 4
+	Time taken: 3 hrs
+-}
 
+--- Given code
+testRelation = [(1,2),(2,3),(3,4)]
+
+type Rel a = [(a,a)]
+
+infixr 5 @@
+(@@) :: Eq a => Rel a -> Rel a -> Rel a
+r @@ s = nub [ (x,z) | (x,y) <- r,
+					   (w,z) <- s,
+					   y == w ]
+
+--- Written code (as lambda)
+trClos :: Ord a => Rel a -> Rel a
+trClos x = lfp (\ x -> nub (x ++ (x @@ x))) x
 
 
 

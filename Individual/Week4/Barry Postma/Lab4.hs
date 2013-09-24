@@ -8,7 +8,7 @@ import Week3
 
 {-|
 	Exercise 2
-	Duration: 1hr because of trouble with IO again... :)
+	Time taken: 1hr because of trouble with IO again... :)
 -}
 randomSet :: IO (Set Int)
 randomSet = do
@@ -33,6 +33,7 @@ diff (Set s1) (Set s2) = union' (Set (s1 \\ s2)) (Set (s2 \\ s1))
 
 {-|
 	Exercise 3 - TESTS
+	Time taken: 2 hrs
 -}
 -- 3.4.1 Testing of intersection and union' at once.
 -- Every run of this function should return a set containing element 100
@@ -44,6 +45,18 @@ testIntersection = do
 				   let testControlSet2 = union' testSet2 (Set [100])
 				   let testSetUnions = (intersection testControlSet1 testControlSet2)
 				   return testSetUnions
+
+--- 3.4.2 Testing of difference between sets
+--- Every run of this function should return a set that does not contain an 
+--- element of 100 but there should be an element 99 and 101
+testDifference :: IO (Set Int)
+testDifference = do
+				 testSet1 <- randomSet
+				 testSet2 <- randomSet
+				 let testControlSet1 = union' testSet1 (Set [99,100,101])
+				 let testControlSet2 = union' testSet2 (Set [100])
+				 let testSetDifference = (diff testControlSet1 testControlSet2)
+				 return testSetDifference
 
 
 

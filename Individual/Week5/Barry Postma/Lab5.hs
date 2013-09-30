@@ -7,6 +7,7 @@ import Week5
 
 {-|
 	Exercise 1
+	Time spent: 1:15 hrs
 -}
 -- Given
 mergeSrt :: Ord a => [a] -> [a]
@@ -20,6 +21,34 @@ mergeSrt' p xs = if p xs (mergeSrt xs) then mergeSrt xs
 
 -- Usage of the assertion
 -- Precondition: None
--- Postcondition: values are sorted in ascending order
+-- Postcondition: Values are sorted in ascending order
 mergeSrtAssertionResult = mergeSrt' (\ _ (x:y:xs) -> x < y) [10,5,100,60,40,77]
+
+{-|
+	Exercise 2
+	Time spent: ___
+-}
+-- Given
+split :: [a] -> ([a],[a])
+split xs = let n = div (length xs) 2
+		   in (take n xs, drop n xs) 
+
+-- Assertion wrapper
+split' :: ([a] -> ([a],[a]) -> Bool) -> [a] -> ([a],[a])
+split' p xs = if p xs (split xs) then split xs
+			  else error "pre-/postcondition not met"
+
+-- Usage of the assertion
+-- Precondition: List contains more than one element
+-- Postcondition: Values are sorted in ascending order
+splitAssertionResult = split' (\ xs _ -> length xs >= 2) [20,60,40]
+
+
+
+
+
+
+
+
+
 

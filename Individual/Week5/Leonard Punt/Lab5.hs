@@ -16,7 +16,7 @@ mergeSrtA = assert1 (\ _ ys -> sorted ys) mergeSrt
 -- Exercise 2 - Time spent: 20 minutes
 split :: [a] -> ([a],[a])
 split xs = let
-   n = (length xs) `div` 2
+   n = length xs `div` 2
   in
    (take n xs, drop n xs)
 

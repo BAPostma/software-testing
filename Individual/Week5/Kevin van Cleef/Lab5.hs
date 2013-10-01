@@ -71,3 +71,36 @@ splitSrtA = assert1 (\_ ys -> sorted ys) splitSrt
 -- Deliverables: formal statement of new constraint, modified Haskell program, sudoku
 -- solution for the above NRC-Handelsblad sudoku, indication of time spent.
 
+-- The solutions can be find in the file 'NRCSudokuSolver.hs'.
+
+-- Duration: 90 minutes.
+
+-- 4. The course notes of this week contain a sudoku solver. A sudoku generator written
+-- in Haskell is available on the course web page, as RandomSudoku.hs. Use your
+-- program from the previous exercise and this program to create a program that
+-- generates NRC-Handelsblad sudoku problems.
+-- Deliverables: NRC-Handelsblad sudoku generator, indication of time spent.
+
+-- The exercise can easily be solved by taking the file 'RandomSudoku.hs' and import the file from exercise 3 instead of the
+-- code file from week5. So changed 'import Week5' into 'import RandomSudoku.hs'. Now you can generate NRC Sudoku puzzles by 
+-- loading the file 'RandomSudoku.hs' and calling the function 'genNewNRCSudoku'. If you won't to see te solution and the problem 
+-- at once then you can run 'main'.
+
+-- Duration: 45 minutes.
+
+-- 5. Test your programs from the previous two exercises, and document the test process. One important property to test is whether 
+-- the generated sudoku problems are minimal. How can you test this?
+-- Deliverables: testing code, test report, indication of time spent.
+
+-- Duration: ...
+
+
+
+
+
+
+
+
+
+
+

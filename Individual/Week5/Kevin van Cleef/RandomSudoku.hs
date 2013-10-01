@@ -7,9 +7,10 @@
 module RandomSudoku where 
 
 import Data.List
-import Week5
+import NRCSudokuSolver
 import System.Random
 
+-- Empty grid.
 emptyN :: Node
 emptyN = (\ _ -> 0,constraints (\ _ -> 0))
 
@@ -114,4 +115,19 @@ main = do [r] <- rsolveNs [emptyN]
           showNode s
           solveShowNs [s]
 
-             
+-- Generate a new NRC Sudoku puzzles without the solution.
+genNewNRCSudoku = do [r] <- rsolveNs [emptyN]
+                     s <- genProblem r
+                     showNode s
+
+{-testMini = do [r] <- rsolveNs [emptyN]
+              s  <- genProblem r
+               
+              showNode s  
+-}
+
+
+
+
+
+

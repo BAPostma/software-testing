@@ -45,17 +45,15 @@ positions, values :: [Int]
 positions = [1..9]
 values    = [1..9] 
 
-blocks :: [[Int]]
+blocks, nrcBlocks :: [[Int]]
 blocks = [[1..3],[4..6],[7..9]]
-
-nrcBlocks :: [[Int]]
 nrcBlocks = [[2..4],[6..8]]
 
 showDgt :: Value -> String
 showDgt 0 = " "
 showDgt d = show d
 
-showRow :: [Value] -> IO()
+showRow, showNrcRow :: [Value] -> IO()
 showRow [a1,a2,a3,a4,a5,a6,a7,a8,a9] = 
  do  putChar '|'         ; putChar ' '
      putStr (showDgt a1) ; putChar ' ' ; putChar ' '; putChar ' '
@@ -70,8 +68,6 @@ showRow [a1,a2,a3,a4,a5,a6,a7,a8,a9] =
      putStr (showDgt a8) ; putChar ' ' ; putChar ' ' ; putChar ' '
      putStr (showDgt a9) ; putChar ' '
      putChar '|'         ; putChar '\n'
-
-showNrcRow :: [Value] -> IO()
 showNrcRow [a1,a2,a3,a4,a5,a6,a7,a8,a9] =
  do  putChar '|'         ; putChar ' '
      putStr (showDgt a1) ; putChar ' ' ; putChar '|'; putChar ' '
@@ -120,17 +116,13 @@ grid2sud gr = \ (r,c) -> pos gr (r,c)
 showSudoku :: Sudoku -> IO()
 showSudoku = showGrid . sud2grid
 
-bl :: Int -> [Int]
+bl, nrcBl :: Int -> [Int]
 bl x = concat $ filter (elem x) blocks
-
-nrcBl :: Int -> [Int]
 nrcBl x = concat $ filter (elem x) nrcBlocks
 
-subGrid :: Sudoku -> (Row,Column) -> [Value]
+subGrid, nrcSubGrid :: Sudoku -> (Row,Column) -> [Value]
 subGrid s (r,c) = 
   [ s (r',c') | r' <- bl r, c' <- bl c ]
-
-nrcSubGrid :: Sudoku -> (Row,Column) -> [Value]
 nrcSubGrid s (r,c) =
   [ s (r',c') | r' <- nrcBl r, c' <- nrcBl c ]
 
@@ -145,10 +137,8 @@ freeInColumn :: Sudoku -> Column -> [Value]
 freeInColumn s c = 
   freeInSeq [ s (i,c) | i <- positions ]
 
-freeInSubgrid :: Sudoku -> (Row,Column) -> [Value]
+freeInSubgrid, nrcFreeInSubgrid :: Sudoku -> (Row,Column) -> [Value]
 freeInSubgrid s (r,c) = freeInSeq (subGrid s (r,c))
-
-nrcFreeInSubgrid :: Sudoku -> (Row,Column) -> [Value]
 nrcFreeInSubgrid s (r,c) = freeInSeq (nrcSubGrid s (r,c))
 
 freeAtPos :: Sudoku -> (Row,Column) -> [Value]
@@ -169,11 +159,9 @@ colInjective :: Sudoku -> Column -> Bool
 colInjective s c = injective vs where 
    vs = filter (/= 0) [ s (i,c) | i <- positions ]
 
-subgridInjective :: Sudoku -> (Row,Column) -> Bool
+subgridInjective, nrcSubgridInjective :: Sudoku -> (Row,Column) -> Bool
 subgridInjective s (r,c) = injective vs where 
    vs = filter (/= 0) (subGrid s (r,c))
-
-nrcSubgridInjective :: Sudoku -> (Row,Column) -> Bool
 nrcSubgridInjective s (r,c) = injective vs where
    vs = filter (/= 0) (nrcSubGrid s (r,c))
 

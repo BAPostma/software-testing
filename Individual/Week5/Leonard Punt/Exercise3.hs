@@ -47,8 +47,9 @@ values    = [1..9]
 
 blocks :: [[Int]]
 blocks = [[1..3],[4..6],[7..9]]
-blocks1 :: [[Int]]
-blocks1 = [[2..4],[6..8]]
+
+nrcBlocks :: [[Int]]
+nrcBlocks = [[2..4],[6..8]]
 
 showDgt :: Value -> String
 showDgt 0 = " "
@@ -69,8 +70,9 @@ showRow [a1,a2,a3,a4,a5,a6,a7,a8,a9] =
      putStr (showDgt a8) ; putChar ' ' ; putChar ' ' ; putChar ' '
      putStr (showDgt a9) ; putChar ' '
      putChar '|'         ; putChar '\n'
-showRow1 :: [Value] -> IO()
-showRow1 [a1,a2,a3,a4,a5,a6,a7,a8,a9] = 
+
+showNrcRow :: [Value] -> IO()
+showNrcRow [a1,a2,a3,a4,a5,a6,a7,a8,a9] =
  do  putChar '|'         ; putChar ' '
      putStr (showDgt a1) ; putChar ' ' ; putChar '|'; putChar ' '
      putStr (showDgt a2) ; putChar ' '
@@ -90,15 +92,15 @@ showGrid [as,bs,cs,ds,es,fs,gs,hs,is] =
  do putStrLn ("+---------+-----------+---------+")
     showRow as;
     putStrLn ("|   +-----|---+   +---|-----+   |")
-    showRow1 bs; showRow1 cs
+    showNrcRow bs; showNrcRow cs
     putStrLn ("+---------+-----------+---------+")
-    showRow1 ds; 
+    showNrcRow ds;
     putStrLn ("|   +-----|---+   +---|-----+   |")
     showRow es;
     putStrLn ("|   +-----|---+   +---|-----+   |")
-    showRow1 fs
+    showNrcRow fs
     putStrLn ("+---------+-----------+---------+")
-    showRow1 gs; showRow1 hs;
+    showNrcRow gs; showNrcRow hs;
     putStrLn ("|   +-----|---+   +---|-----+   |")
     showRow is
     putStrLn ("+---------+-----------+---------+")
@@ -120,15 +122,17 @@ showSudoku = showGrid . sud2grid
 
 bl :: Int -> [Int]
 bl x = concat $ filter (elem x) blocks
-bl1 :: Int -> [Int]
-bl1 x = concat $ filter (elem x) blocks1
+
+nrcBl :: Int -> [Int]
+nrcBl x = concat $ filter (elem x) nrcBlocks
 
 subGrid :: Sudoku -> (Row,Column) -> [Value]
 subGrid s (r,c) = 
   [ s (r',c') | r' <- bl r, c' <- bl c ]
-subGrid1 :: Sudoku -> (Row,Column) -> [Value]
-subGrid1 s (r,c) = 
-  [ s (r',c') | r' <- bl1 r, c' <- bl1 c ]
+
+nrcSubGrid :: Sudoku -> (Row,Column) -> [Value]
+nrcSubGrid s (r,c) =
+  [ s (r',c') | r' <- nrcBl r, c' <- nrcBl c ]
 
 freeInSeq :: [Value] -> [Value]
 freeInSeq seq = values \\ seq 
@@ -143,15 +147,16 @@ freeInColumn s c =
 
 freeInSubgrid :: Sudoku -> (Row,Column) -> [Value]
 freeInSubgrid s (r,c) = freeInSeq (subGrid s (r,c))
-freeInSubgrid1 :: Sudoku -> (Row,Column) -> [Value]
-freeInSubgrid1 s (r,c) = freeInSeq (subGrid1 s (r,c))
+
+nrcFreeInSubgrid :: Sudoku -> (Row,Column) -> [Value]
+nrcFreeInSubgrid s (r,c) = freeInSeq (nrcSubGrid s (r,c))
 
 freeAtPos :: Sudoku -> (Row,Column) -> [Value]
 freeAtPos s (r,c) = 
   (freeInRow s r) 
    `intersect` (freeInColumn s c) 
    `intersect` (freeInSubgrid s (r,c))
-   `intersect` (freeInSubgrid1 s (r,c))
+   `intersect` (nrcFreeInSubgrid s (r,c))
 
 injective :: Eq a => [a] -> Bool
 injective xs = nub xs == xs
@@ -167,9 +172,10 @@ colInjective s c = injective vs where
 subgridInjective :: Sudoku -> (Row,Column) -> Bool
 subgridInjective s (r,c) = injective vs where 
    vs = filter (/= 0) (subGrid s (r,c))
-subgridInjective1 :: Sudoku -> (Row,Column) -> Bool
-subgridInjective1 s (r,c) = injective vs where 
-   vs = filter (/= 0) (subGrid1 s (r,c))
+
+nrcSubgridInjective :: Sudoku -> (Row,Column) -> Bool
+nrcSubgridInjective s (r,c) = injective vs where
+   vs = filter (/= 0) (nrcSubGrid s (r,c))
 
 consistent :: Sudoku -> Bool
 consistent s = and $
@@ -180,7 +186,7 @@ consistent s = and $
                [ subgridInjective s (r,c) | 
                     r <- [1,4,7], c <- [1,4,7]]
                 ++
-               [ subgridInjective1 s (r,c) | 
+               [ nrcSubgridInjective s (r,c) |
                     r <- [2,6], c <- [2,6]]
 
 extend :: Sudoku -> (Row,Column,Value) -> Sudoku
@@ -215,14 +221,10 @@ prune (r,c,v) ((x,y,zs):rest)
   | c == y = (x,y,zs\\[v]) : prune (r,c,v) rest
   | sameblock (r,c) (x,y) = 
         (x,y,zs\\[v]) : prune (r,c,v) rest
-  | sameblock1 (r,c) (x,y) = 
-        (x,y,zs\\[v]) : prune (r,c,v) rest      
   | otherwise = (x,y,zs) : prune (r,c,v) rest
 
 sameblock :: (Row,Column) -> (Row,Column) -> Bool
-sameblock (r,c) (x,y) = bl r == bl x && bl c == bl y
-sameblock1 :: (Row,Column) -> (Row,Column) -> Bool
-sameblock1 (r,c) (x,y) = bl1 r == bl1 x && bl1 c == bl1 y
+sameblock (r,c) (x,y) = (bl r == bl x && bl c == bl y) || (nrcBl r == nrcBl x && nrcBl c == nrcBl y)
 
 initNode :: Grid -> [Node]
 initNode gr = let s = grid2sud gr in 

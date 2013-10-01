@@ -1,4 +1,4 @@
-module Week5
+module Exercise3
 
 where
 

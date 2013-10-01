@@ -33,3 +33,5 @@ mergeSrt1A :: Ord a => [a] -> [a]
 mergeSrt1A = assert1 (\ _ ys -> sorted ys) mergeSrt1
 
 -- Exercise 3 - see Exercise3.hs
+
+-- Exercise 4 - see Exercise4.hs

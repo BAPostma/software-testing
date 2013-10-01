@@ -32,4 +32,4 @@ mergeSrt1 xs = let
 mergeSrt1A :: Ord a => [a] -> [a]
 mergeSrt1A = assert1 (\ _ ys -> sorted ys) mergeSrt1
 
--- Exercise 3 - see Exercise 3.hs
+-- Exercise 3 - see Exercise3.hs

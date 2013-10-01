@@ -1,11 +1,6 @@
-module Exercise3
-
-where
-
-import Data.List
-
 {-
  Exercise 3
+
  - Time spent: 
  3 hours
  
@@ -34,6 +29,12 @@ import Data.List
  - Modfied Haskell program: 
  See below
 -}
+
+module Exercise3
+
+where
+
+import Data.List
 
 type Row    = Int 
 type Column = Int 
@@ -334,4 +335,15 @@ example7 = [[0,0,0,3,0,0,0,0,0],
             [0,0,0,0,0,0,0,3,1],
             [0,8,0,0,4,0,0,0,0],
             [0,0,2,0,0,0,0,0,0]]         
+
+example8 :: Grid
+example8 = [[6,0,0,5,0,0,0,0,0],
+            [0,0,0,0,0,6,3,0,0],
+            [0,0,9,0,0,0,0,0,0],
+            [0,0,0,4,0,8,0,5,0],
+            [1,0,0,0,0,0,0,0,0],
+            [0,0,0,2,0,0,0,0,7],
+            [0,0,4,0,0,5,0,0,0],
+            [0,0,0,0,0,0,0,2,0],
+            [0,2,0,0,4,0,0,3,0]]
 

@@ -31,3 +31,5 @@ mergeSrt1 xs = let
 -- Assertion: every element in the result list should be smaller or equal than all its succeeding items
 mergeSrt1A :: Ord a => [a] -> [a]
 mergeSrt1A = assert1 (\ _ ys -> sorted ys) mergeSrt1
+
+-- Exercise 3 - see Exercise 3.hs

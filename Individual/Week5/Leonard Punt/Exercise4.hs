@@ -8,7 +8,7 @@
  Jan van Eijck, October 2010, modified October 2012
 -}
 
-module RandomSudoku where 
+module Exercise4 where
 
 import Data.List
 import Exercise3

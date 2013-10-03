@@ -1,3 +1,5 @@
+-- VVZ: this is a hardcore programmer-style documentation:
+-- VVZ: You want documentation? KA-BLAM here’s lots of code and two lines of comments!
 1. Tests for CNF:
 - These three functions test if a function is CNF:
 isCNF :: Form -> Bool

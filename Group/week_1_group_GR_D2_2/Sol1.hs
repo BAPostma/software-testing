@@ -85,7 +85,8 @@ substring [] ys = False
 substring xs [] = False
 substring xs ys | prefix xs ys				= True
 				| substring xs (tail ys)	= True
-				| otherwise		
+				| otherwise					= False	
+-- VVZ: previous line was incorrect, I fixed it. How do you submit something that doesn’t even parse?
 
 -- Exercise 1.18
 -- 1:
@@ -122,6 +123,8 @@ lengths xs = map length xs
 -- Exercise 1.21
 sumLengths :: [[a]] -> Int
 sumLengths xs = sum (map length xs)
+-- VVZ: correct, but could be written simpler:
+-- sumLengths = sum . map length
 
 -- Exercise 1.24
 -- Nothing changes, 'ldp' now returns a function that expects an Integer, this Integer is provided in the function 'prime'

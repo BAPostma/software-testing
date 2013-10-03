@@ -39,6 +39,7 @@ genIntList = sequence (replicate int_list_length (getRandomInt int_list_max_int)
 
 isPermutation :: Eq a => [a] -> [a] -> Bool
 isPermutation xs ys = elem ys (permutations xs)
+-- VVZ: a bit of a cheat; you didn’t write 'maxInt = max' for the week 1, did you?
 
 -- 5. Define some testable properties for this function, and use your random
 -- generator for integer lists from Exercise 3 to test isPermutation.
@@ -68,6 +69,9 @@ testIsPermutation = do
         check3 = (isPermutation xs ys)
         result = (check1 && check2 && check3) 
         in print ("Equal when sorted? " ++ show (check1) ++ ", Equal length? " ++ show (check2) ++ ", Permutation? " ++ show (check3) ++ " Test passed? " ++ show (result) ++ ", Lists: " ++ show (xs) ++ " & " ++ show (ys))
+-- VVZ: Slightly too verbose to be readable when you run it, but well… de gustibus non est disputandum.
+-- VVZ: The generation of the formulae is very cool, though.
+-- VVZ: even though it is skewed: +(12 +(13 +(18 +(10 1)))) should’ve been +(12 13 18 10 1) etc
 
 isEqualLength :: Ord a => [a] -> [a] -> Bool
 isEqualLength xs ys = length xs == length ys
@@ -236,3 +240,4 @@ getRandomFormulas' d n = do
 
 
 
+-- VVZ: are these 23 lines a metaphorical answer for the bonus exercise?

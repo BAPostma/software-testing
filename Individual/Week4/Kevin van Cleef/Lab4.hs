@@ -72,6 +72,8 @@ testSetOperations n = do testSetOperation
 -- 4. Suppose we implement binary relations as list of pairs, Haskell type [(a,a)].
 -- Assume the following definitions:
 
+-- Duration: 90 minutes
+
 type Rel a = [(a,a)]
 
 infixr 5 @@
@@ -86,57 +88,39 @@ trClos :: Ord a => Rel a -> Rel a
 trClos r = lfp trClos' r
 
 trClos' :: Ord a => Rel a -> Rel a
-trClos' r = nub (r ++ (r @@ r))
+trClos' r = sort (nub (r ++ (r @@ r)))
 
 -- Alternative implementation of trClos
 trClosAlternative :: Ord a => Rel a -> Rel a
 trClosAlternative [] = []
-trClosAlternative r | uhm == r = r
+trClosAlternative r | uhm == r = sort r
                     | otherwise = trClosAlternative uhm
                     where uhm = nub (r ++ (r @@ r))
-
-
-
-
-
----- trClos' :: Ord a => Rel a -> Rel a
-----trClos' (Rel (x:xs)) = (@@) x xs
-
---trClos' :: Ord a => (a,a) -> (a,a)
---trClos' (x:y) = ((@@) r1 r2) where 
---                                r1 = x 
---                                r2 = xs
-
-
--- eerste argument is 1 element uit de input
--- tweede argument is de rest van de lijst uit de input.
-
-
-
-{-
-
-trClos [(1,2),(2,3),(3,4)]
-
-(@@) [(1,2)] [(2,3),(3,4)]
-
-
-
-
-
--}
-
-
-
-
-
-
-
-
-
-
 
 -- 5. Test the function trClos from the previous exercise. Devise your own
 -- test method for this. Try to use random test generation. Define reasonable properties to test.
 -- (Deliverables: test code, short test report, indication of time spent.)
+
+genRel :: IO (Rel Int)
+genRel = do
+  xs <- genIntList 
+  ys <- genIntList
+  return (zip xs ys)
+
+
+trClos2 :: IO (Rel Int) -> Rel a
+trClos2 xs = do 
+  return (trClos xs)
+
+
+
+
+
+
+
+
+
+
+
 
 

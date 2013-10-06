@@ -9,6 +9,6 @@ Course slide codes Week 4.
 Course slide codes Week 5.
 
 
-** Exercise1.hs till Exercise5.hs**
+**Exercise1.hs till Exercise5.hs**
 
 Solutions per Exercise.

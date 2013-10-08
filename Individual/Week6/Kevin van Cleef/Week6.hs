@@ -23,6 +23,7 @@ factors n = let
     | otherwise      =    factors' n ps
 
 primes = sieve [2..]
+sieve [] = []
 sieve (n:ns) = n : sieve 
    (filter (\ m -> rem m n /= 0) ns)
 

@@ -5,14 +5,6 @@ import Data.List
 import System.Random
 import Week6
 
-carmichael :: [Integer]
-carmichael = [ (6*k+1)*(12*k+1)*(18*k+1) | 
-      k <- [2..], 
-      isPrime (6*k+1), 
-      isPrime (12*k+1), 
-      isPrime (18*k+1) ]
-
-
 -- 1. Implement a function
 -- exM :: Integer -> Integer -> Integer -> Integer
 -- that does modular exponentiation of x^y in polynomial time, by repeatedly squaring modulo N.
@@ -66,16 +58,23 @@ exM2 x y n | y == 0 = 1
 -- Eratosthenes’ sieve, so that instead of throw- ing away composite numbers, it marks them as false. Next filter out 
 -- the numbers marked as false.
 
--- Duration: 45 minutes.
+-- Duration: 60 minutes.
 
 -- Return a infinite list with composite numbers.
 composites :: [Integer]
-composites = composite_sieve [2..]
-
--- Get all composite number from an inputted integer list.
+composites = composite_sieve2 [2..]
+-- Get all composite numbers from an inputted integer list.
 composite_sieve :: [Integer] -> [Integer]
-composite_sieve [] = []
-composite_sieve (n:ns) = if not (isPrime n) 
+composite_sieve xs = [i | i <- xs, head (factors i) /= i]
+-- Credits to Ferry for optimalisation.
+
+-- Return a infinite list with composite numbers.
+composites2 :: [Integer]
+composites2 = composite_sieve [2..]
+-- Get all composite number from an inputted integer list.
+composite_sieve2 :: [Integer] -> [Integer]
+composite_sieve2 [] = []
+composite_sieve2 (n:ns) = if not (isPrime n) 
 	                     then n : cs 
 	                     else cs 
 	                     where cs = composite_sieve (filter (\ m -> isPrime m == False) ns)
@@ -84,8 +83,106 @@ composite_sieve (n:ns) = if not (isPrime n)
 -- least composite number that you can find that fools the check, for testF k with
 -- k = 1; 2; 3 ? What happens if you increase k?
 
+-- Duration: 30 minutes
+
+testF :: [Integer] -> IO ()
+testF [] = print "All Tests passed."
+testF (k:ks) = do
+  k' <- prime_test_F k
+  if k'
+  then do print ("Fermat's primality check returns " ++ show k' ++ " for number: " ++ show k)
+          testF ks
+  else do print ("Fermat's primality check returns " ++ show k' ++ " for number: " ++ show k)
+          testF ks
+
+-- The lowest composite number thats fools the Fermat's test is 4 I think. The number lowest number is continuously 
+-- changing but the lowest number I found is 4.
+
+-- When the value k increases the testF function takes longer and longer to find a number that fools the Fermat's check.
+-- This implies that the Fermat's check is less easy to fool with big numbers.
+
+-- *Lab6> testF composites
+-- "Fermat's primality check returns True for number: 4"
+-- "Fermat's primality check returns True for number: 9"
+-- "Fermat's primality check returns True for number: 91"
+-- "Fermat's primality check returns True for number: 176"
+-- "Fermat's primality check returns True for number: 195"
+-- "Fermat's primality check returns True for number: 217"
+-- "Fermat's primality check returns True for number: 225"
+-- "Fermat's primality check returns True for number: 322"
+-- "Fermat's primality check returns True for number: 325"
+-- "Fermat's primality check returns True for number: 343"
+-- "Fermat's primality check returns True for number: 345"
+-- "Fermat's primality check returns True for number: 493"
+-- "Fermat's primality check returns True for number: 513"
+-- "Fermat's primality check returns True for number: 561"
+-- "Fermat's primality check returns True for number: 589"
+-- "Fermat's primality check returns True for number: 679"
+-- "Fermat's primality check returns True for number: 781"
+-- "Fermat's primality check returns True for number: 922"
+-- "Fermat's primality check returns True for number: 964"
+-- "Fermat's primality check returns True for number: 1001"
+-- "Fermat's primality check returns True for number: 1105"
+-- "Fermat's primality check returns True for number: 1275"
+-- "Fermat's primality check returns True for number: 1387"
+-- "Fermat's primality check returns True for number: 1729"
+-- "Fermat's primality check returns True for number: 1845"
+-- "Fermat's primality check returns True for number: 1891"
+-- "Fermat's primality check returns True for number: 1969"
+-- "Fermat's primality check returns True for number: 2209"
+-- "Fermat's primality check returns True for number: 2356"
+-- "Fermat's primality check returns True for number: 2413"
+-- "Fermat's primality check returns True for number: 2439"
+-- "Fermat's primality check returns True for number: 2465"
+-- "Fermat's primality check returns True for number: 2725"
+-- "Fermat's primality check returns True for number: 2821"
+-- "Fermat's primality check returns True for number: 3211"
+-- "Fermat's primality check returns True for number: 3268"
+-- "Fermat's primality check returns True for number: 3731"
+-- "Fermat's primality check returns True for number: 3825"
+-- "Fermat's primality check returns True for number: 3887"
+-- "Fermat's primality check returns True for number: 4011"
+-- "Fermat's primality check returns True for number: 4033"
+-- "Fermat's primality check returns True for number: 4186"
+-- "Fermat's primality check returns True for number: 4371"
+-- "Fermat's primality check returns True for number: 4489"
+-- "Fermat's primality check returns True for number: 4699"
+-- "Fermat's primality check returns True for number: 5185"
 
 
+-- 5. Use the list generated by the following function for a further test of Fermat’s pri- mality check.
+carmichael :: [Integer]
+carmichael = [ (6*k+1)*(12*k+1)*(18*k+1) | 
+      k <- [2..], 
+      isPrime (6*k+1), 
+      isPrime (12*k+1), 
+      isPrime (18*k+1) ]
+-- Read the entry on Carmichael numbers on Wikipedia to explain what you find.
+
+-- Duration: 20 minutes
+
+-- The function carmichael generates a list of numbers which are numbers that looks like a prime but aren't. Carmichael numbers
+-- are numbers that fool the Fermat's primary check. When the carmichael number list is used with the testF function from the 
+-- previous exercise for all values will a True value be returned.
+
+-- 6. Use the list from the previous exercise to test the Miller-Rabin primality check. What do you find?
+
+
+
+
+
+-- 7. You can use the Miller-Rabin primality check to discover some large Mersenne primes. The recipe: take a large prime p, 
+-- and use the Miller-Rabin algorithm to check whether 2^p − 1 is also prime. Find information about Mersenne primes on internet 
+-- and check whether the numbers that you found are genuine Mersenne primes. Report on your findings.
+
+
+
+
+
+
+-- 8. Bonus For RSA public key cryptography, one needs pairs of large primes with the same bitlength. Such pairs of primes can 
+-- be found by trial-and-error using the Miller-Rabin primality check. Write a function for this, and demonstrate how a pair p, q 
+-- that you found can be used for public key encoding and decoding.
 
 
 

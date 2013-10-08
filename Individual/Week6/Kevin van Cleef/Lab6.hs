@@ -62,7 +62,7 @@ exM2 x y n | y == 0 = 1
 
 -- Return a infinite list with composite numbers.
 composites :: [Integer]
-composites = composite_sieve2 [2..]
+composites = composite_sieve [2..]
 -- Get all composite numbers from an inputted integer list.
 composite_sieve :: [Integer] -> [Integer]
 composite_sieve xs = [i | i <- xs, head (factors i) /= i]
@@ -70,14 +70,14 @@ composite_sieve xs = [i | i <- xs, head (factors i) /= i]
 
 -- Return a infinite list with composite numbers.
 composites2 :: [Integer]
-composites2 = composite_sieve [2..]
+composites2 = composite_sieve2 [2..]
 -- Get all composite number from an inputted integer list.
 composite_sieve2 :: [Integer] -> [Integer]
 composite_sieve2 [] = []
 composite_sieve2 (n:ns) = if not (isPrime n) 
 	                     then n : cs 
 	                     else cs 
-	                     where cs = composite_sieve (filter (\ m -> isPrime m == False) ns)
+	                     where cs = composite_sieve2 (filter (\ m -> isPrime m == False) ns)
 
 -- 4. Use the list of composite numbers to test Fermat's primality check. What is the
 -- least composite number that you can find that fools the check, for testF k with

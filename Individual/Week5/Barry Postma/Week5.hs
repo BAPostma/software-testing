@@ -201,6 +201,9 @@ values    = [1..9]
 blocks :: [[Int]]
 blocks = [[1..3],[4..6],[7..9]]
 
+nrcBlocks :: [[Int]]
+nrcBlocks = [[2..4],[6..8]] -- new sub-blocks NRC standard
+
 showDgt :: Value -> String
 showDgt 0 = " "
 showDgt d = show d
@@ -221,6 +224,24 @@ showRow [a1,a2,a3,a4,a5,a6,a7,a8,a9] =
      putStr (showDgt a9) ; putChar ' '
      putChar '|'         ; putChar '\n'
 
+showRowNrc :: [Value] -> IO()
+showRowNrc [a1,a2,a3,a4,a5,a6,a7,a8,a9] = 
+ do  putChar '|'         ; putChar ' '
+     putStr (showDgt a1) ; putChar ' '
+     putChar '|'         ; putChar ' '
+     putStr (showDgt a2) ; putChar ' '
+     putStr (showDgt a3) ; putChar ' '
+     putStr (showDgt a4) ; putChar ' '
+     putChar '|'         ; putChar ' '
+     putStr (showDgt a5) ; putChar ' '
+     putChar '|'         ; putChar ' '
+     putStr (showDgt a6) ; putChar ' '
+     putStr (showDgt a7) ; putChar ' '
+     putStr (showDgt a8) ; putChar ' '
+     putChar '|'         ; putChar ' '
+     putStr (showDgt a9) ; putChar ' '
+     putChar '|'         ; putChar '\n'
+	 
 showGrid :: Grid -> IO()
 showGrid [as,bs,cs,ds,es,fs,gs,hs,is] =
  do putStrLn ("+-------+-------+-------+")
@@ -231,6 +252,24 @@ showGrid [as,bs,cs,ds,es,fs,gs,hs,is] =
     showRow gs; showRow hs; showRow is
     putStrLn ("+-------+-------+-------+")
 
+showGridNrc :: Grid -> IO()
+showGridNrc [as',bs,cs,ds,es,fs,gs,hs,is] =
+ do putStrLn ("+-------+-------+-------+")
+    showRowNrc as'
+    putStrLn ("+--+-------+--+------+--+");
+	showRowNrc bs; showRowNrc cs
+    putStrLn ("+-------+-------+-------+");
+    showRowNrc ds; 
+	putStrLn ("+--+-------+--+------+--+");
+    showRowNrc es;
+	putStrLn ("+--+-------+--+------+--+");
+	showRowNrc fs
+    putStrLn ("+-------+-------+-------+")
+    showRowNrc gs; showRowNrc hs;
+	putStrLn ("+--+-------+--+------+--+");
+	showRowNrc is
+    putStrLn ("+-------+-------+-------+")
+	
 type Sudoku = (Row,Column) -> Value
 
 sud2grid :: Sudoku -> Grid
@@ -247,12 +286,17 @@ showSudoku :: Sudoku -> IO()
 showSudoku = showGrid . sud2grid
 
 bl :: Int -> [Int]
-bl x = concat $ filter (elem x) blocks 
+bl x = concat $ filter (elem x) blocks
+blNrc :: Int -> [Int]
+blNrc x = concat $ filter (elem x) nrcBlocks
 
 subGrid :: Sudoku -> (Row,Column) -> [Value]
 subGrid s (r,c) = 
   [ s (r',c') | r' <- bl r, c' <- bl c ]
 
+subGridNrc :: Sudoku -> (Row,Column) -> [Value]
+subGridNrc s (r,c) = [ s (r', c') | r' <- blNrc r, c' <- blNrc c ]
+  
 freeInSeq :: [Value] -> [Value]
 freeInSeq seq = values \\ seq 
 
@@ -267,11 +311,15 @@ freeInColumn s c =
 freeInSubgrid :: Sudoku -> (Row,Column) -> [Value]
 freeInSubgrid s (r,c) = freeInSeq (subGrid s (r,c))
 
+freeInNrcSubgrid :: Sudoku -> (Row,Column) -> [Value]
+freeInNrcSubgrid s (r,c) = freeInSq (subGridNrc s (r,c))
+
 freeAtPos :: Sudoku -> (Row,Column) -> [Value]
 freeAtPos s (r,c) = 
   (freeInRow s r) 
    `intersect` (freeInColumn s c) 
-   `intersect` (freeInSubgrid s (r,c)) 
+   `intersect` (freeInSubgrid s (r,c))
+   `intersect` (freeInNrcSubgrid s (r,c)) 
 
 injective :: Eq a => [a] -> Bool
 injective xs = nub xs == xs
@@ -287,7 +335,11 @@ colInjective s c = injective vs where
 subgridInjective :: Sudoku -> (Row,Column) -> Bool
 subgridInjective s (r,c) = injective vs where 
    vs = filter (/= 0) (subGrid s (r,c))
-
+   
+nrcSubgridInjective :: Sudoku -> (Row,Column) -> Bool
+nrcSubgridInjective s (r,c) = injective vs
+							  where vs = filter (/= 0) (nrcSubGrid s (r,c))
+   
 consistent :: Sudoku -> Bool
 consistent s = and $
                [ rowInjective s r |  r <- positions ]
@@ -296,6 +348,9 @@ consistent s = and $
                 ++
                [ subgridInjective s (r,c) | 
                     r <- [1,4,7], c <- [1,4,7]]
+				++
+			   [ nrcSubgridInjective s (r,c) |
+					r <- [2,6], c <- [2,6] ]
 
 extend :: Sudoku -> (Row,Column,Value) -> Sudoku
 extend s (r,c,v) (i,j) | (i,j) == (r,c) = v
@@ -329,6 +384,8 @@ prune (r,c,v) ((x,y,zs):rest)
   | c == y = (x,y,zs\\[v]) : prune (r,c,v) rest
   | sameblock (r,c) (x,y) = 
         (x,y,zs\\[v]) : prune (r,c,v) rest
+  | sameblockNrc (r,c) (x,y) =
+		(x, y, zs)
   | otherwise = (x,y,zs) : prune (r,c,v) rest
 
 sameblock :: (Row,Column) -> (Row,Column) -> Bool

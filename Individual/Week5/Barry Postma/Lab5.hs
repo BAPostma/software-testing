@@ -4,6 +4,8 @@ where
 
 import Data.List
 import Week5
+import Workshop5
+import RandomSudoku
 
 {-|
 	Exercise 1
@@ -43,8 +45,20 @@ split' p xs = if p xs (split xs) then split xs
 -- Postcondition: Values are sorted in ascending order
 splitAssertionResult = split' (\ xs _ -> length xs >= 2) [20,60,40]
 
-
-
+{-|
+	Exercise 3
+	Time spent: ___
+-}
+exampleNrc :: Grid
+exampleNrc = [[0,0,0,3,0,0,0,0,0],
+              [0,0,0,7,0,0,3,0,0],
+              [2,0,0,0,0,0,0,0,8],
+              [0,0,6,0,0,5,0,0,0],
+              [0,9,1,6,0,0,0,0,0],
+              [3,0,0,0,7,1,2,0,0],
+              [0,0,0,0,0,0,0,3,1],
+              [0,8,0,0,4,0,0,0,0],
+			  [0,0,2,0,0,0,0,0,0]]
 
 
 

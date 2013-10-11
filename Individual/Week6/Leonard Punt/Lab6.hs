@@ -45,3 +45,22 @@ carmichael = [ (6*k+1)*(12*k+1)*(18*k+1) |
   1
   (0.00 secs, 1029544 bytes)
 -}
+
+-- Exercise 3:
+composites :: [Integer]
+composites = differenceSorted [2..] primes
+
+-- precondition: both lists are sorted
+-- postcondition: the difference between the two lists
+differenceSorted :: [Integer] -> [Integer] -> [Integer]
+differenceSorted (x:xs) (y:ys) | x < y = x : differenceSorted xs (y:ys)
+                               | otherwise = differenceSorted xs ys
+
+-- this function is implemented according the hints in the assignment, but the function above is much faster
+composites1 :: [Integer]
+composites1 = [x | (x,False) <- sieveComposites [(i,True) | i <- [2..]]]
+
+sieveComposites :: [(Integer,Bool)] -> [(Integer,Bool)]
+sieveComposites ((i,False):ibs) = (i,False) : sieveComposites ibs
+sieveComposites ((i,True):ibs) = (i,True) : sieveComposites (map (\ (n,b) -> (n, b && rem n i /= 0)) ibs)
+

@@ -155,7 +155,7 @@ mersennePrimes 11213
 -}
 
 -- Exercise 8:
---  Demonstrates how a pair (p1,p2) of primes with same bit length can be used for public key encoding and decoding.
+-- Demonstrates how a pair (p1,p2) of primes with same bit length can be used for public key encoding and decoding.
 rsaExample :: Integer -> IO ()
 rsaExample message = do
   (p1,p2) <- genPrimePairSameBitLength

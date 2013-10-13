@@ -4,6 +4,7 @@ where
 import Data.List
 import System.Random
 import Week6
+import Control.Monad
 
 carmichael :: [Integer]
 carmichael = [ (6*k+1)*(12*k+1)*(18*k+1) | 
@@ -64,3 +65,21 @@ sieveComposites :: [(Integer,Bool)] -> [(Integer,Bool)]
 sieveComposites ((i,False):ibs) = (i,False) : sieveComposites ibs
 sieveComposites ((i,True):ibs) = (i,True) : sieveComposites (map (\ (n,b) -> (n, b && rem n i /= 0)) ibs)
 
+-- Exercise 4:
+-- 'k' is the number of times the Fermat prime check is conducted, so increasing k results in a more reliable check
+-- The least numbers that fool the check are:
+-- - for k = 1 -> 4
+-- - for k = 2 -> 21
+-- - for k = 3 -> 85
+-- - for k = 4 -> 481
+-- - for k = 5 -> 561
+-- - for k = 10 -> 1105
+-- - for k = 15 -> 46657
+-- - for k = 20 -> no number that fooled the check was found after running for 5 minutes
+
+-- takes an Int which indicates how many times the Fermat prime check is conducted and a list of composites
+testF :: Int -> [Integer] -> IO ()
+testF k (p:ps) = do
+  r <- primeF k p
+  when (r) $ print("Composite number: " ++ show p ++ ", Fermat's check: " ++ show r)
+  testF k ps

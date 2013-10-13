@@ -68,14 +68,14 @@ sieveComposites ((i,True):ibs) = (i,True) : sieveComposites (map (\ (n,b) -> (n,
 -- Exercise 4:
 -- 'k' is the number of times the Fermat prime check is conducted, so increasing k results in a more reliable check
 -- The least numbers that fool the check are:
--- - for k = 1 -> 4
--- - for k = 2 -> 21
--- - for k = 3 -> 85
--- - for k = 4 -> 481
--- - for k = 5 -> 561
--- - for k = 10 -> 1105
--- - for k = 15 -> 46657
--- - for k = 20 -> no number that fooled the check was found after running for 5 minutes
+-- - testF 1 composites -> 4
+-- - testF 2 composites -> 21
+-- - testF 3 composites -> 85
+-- - testF 4 composites -> 481
+-- - testF 5 composites -> 561
+-- - testF 10 composites -> 1105
+-- - testF 15 composites -> 46657
+-- - testF 20 composites -> no number that fooled the check was found after running for 5 minutes
 
 -- takes an Int which indicates how many times the Fermat prime check is conducted and a list of composites
 testF :: Int -> [Integer] -> IO ()
@@ -83,3 +83,14 @@ testF k (p:ps) = do
   r <- primeF k p
   when (r) $ print("Composite number: " ++ show p ++ ", Fermat's check: " ++ show r)
   testF k ps
+
+-- Exercise 5:
+-- Results of testing:
+-- - testF 1 carmichael -> seems to return all CarMicheal numbers
+-- - testF 2 carmichael -> seems to return all CarMicheal numbers
+-- - testF 5 carmichael -> does not return the first CarMicheal number (294409) as a number that fools Fermat's little theory
+-- So if 'k' gets higher, not all CarMicheal numbers are returned as numbers that fool Fermat's little theory. This is because
+-- Fermat's little theory states that prime numbers have the property a^p = a (mod p). CarMicheal numbers have the property
+-- a^p = a (mod p) too, however 'a' and 'p' have to be relatively prime (i.e. gcd has to be 1). So if we find an 'a' that is
+-- not relatively prime with 'p', is does not pass Fermat's prime check. The higher 'k' gets, the higher the probability we
+-- find such an 'a'.

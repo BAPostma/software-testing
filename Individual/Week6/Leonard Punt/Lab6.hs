@@ -155,12 +155,12 @@ mersennePrimes 11213
 -}
 
 -- Exercise 8:
---  Demonstrate how a pair p; q that you found can be used for public key encoding and decoding
+--  Demonstrates how a pair (p1,p2) of primes with same bit length can be used for public key encoding and decoding.
 rsaExample :: Integer -> IO ()
 rsaExample message = do
-  (p,q) <- genPrimePairSameBitLength
-  let publicKey = rsa_public p q
-      privateKey = rsa_private p q
+  (p1,p2) <- genPrimePairSameBitLength
+  let publicKey = rsa_public p1 p2
+      privateKey = rsa_private p1 p2
       encodedMessage = rsa_encode publicKey message
       decodedMessage = rsa_decode privateKey encodedMessage in
         do
@@ -168,7 +168,7 @@ rsaExample message = do
           print("Encoded message: " ++ show(encodedMessage))
           print("Decoded message: " ++ show(decodedMessage))
 
--- Generates a pair of primes with same bit length
+-- Generates a pair of primes with same bit length.
 genPrimePairSameBitLength :: IO (Integer, Integer)
 genPrimePairSameBitLength = do
   p1 <- genPrime
@@ -178,18 +178,18 @@ genPrimePairSameBitLength = do
       do
         if b1 == b2 then return (p1,p2) else genPrimePairSameBitLength
 
--- Generates a prime between m8 and m12
+-- Generates a prime between m8 and m12.
 genPrime :: IO Integer
 genPrime = do
   n <- randomRIO(m8, m12)
   getNextPrime n
 
--- Takes an integer and returns the next prime number
+-- Takes an integer and returns the next prime number.
 getNextPrime :: Integer -> IO Integer
 getNextPrime n = do
   r <- primeMR 5 n
   if r then return n else getNextPrime (n+1)
 
--- Calculates the bit length of an integer (source: http://reference.wolfram.com/mathematica/ref/BitLength.html)
+-- Calculates the bit length of an integer (source: http://reference.wolfram.com/mathematica/ref/BitLength.html).
 bitLength :: Integer -> Integer
 bitLength n = floor $ (logBase 2 (fromIntegral n)) + 1

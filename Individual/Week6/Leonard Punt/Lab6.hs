@@ -51,13 +51,13 @@ carmichael = [ (6*k+1)*(12*k+1)*(18*k+1) |
 composites :: [Integer]
 composites = differenceSorted [2..] primes
 
--- precondition: both lists are sorted
--- postcondition: the difference between the two lists
+-- Precondition: both lists are sorted
+-- Postcondition: the difference between the two lists
 differenceSorted :: [Integer] -> [Integer] -> [Integer]
 differenceSorted (x:xs) (y:ys) | x < y = x : differenceSorted xs (y:ys)
                                | otherwise = differenceSorted xs ys
 
--- this function is implemented according the hints in the assignment, but the function above is much faster
+-- This function is implemented according the hints in the assignment, but the function above is much faster
 composites1 :: [Integer]
 composites1 = [x | (x,False) <- sieveComposites [(i,True) | i <- [2..]]]
 
@@ -77,18 +77,20 @@ sieveComposites ((i,True):ibs) = (i,True) : sieveComposites (map (\ (n,b) -> (n,
 -- - testF 15 composites -> 46657
 -- - testF 20 composites -> no number that fooled the check was found after running for 5 minutes
 
--- takes an Int which indicates how many times the Fermat prime check is conducted and a list of composites
+-- Takes an Int which indicates how many times the Fermat prime check is conducted and a list of integers to test for primality
 testF :: Int -> [Integer] -> IO ()
 testF k (p:ps) = do
   r <- primeF k p
-  when (r) $ print("Composite number: " ++ show p ++ ", Fermat's check: " ++ show r)
+  when (r) $ print("Number: " ++ show p ++ ", Fermat's check: " ++ show r)
   testF k ps
 
 -- Exercise 5:
 -- Results of testing:
--- - testF 1 carmichael -> seems to return all CarMicheal numbers
--- - testF 2 carmichael -> seems to return all CarMicheal numbers
--- - testF 5 carmichael -> does not return the first CarMicheal number (294409) as a number that fools Fermat's little theory
+{-
+testF 1 carmichael -> seems to return all CarMicheal numbers
+testF 2 carmichael -> seems to return all CarMicheal numbers
+testF 5 carmichael -> does not return the first CarMicheal number (294409) as a number that fools Fermat's little theory
+-}
 -- So if 'k' gets higher, not all CarMicheal numbers are returned as numbers that fool Fermat's little theory. This is because
 -- Fermat's little theory states that prime numbers have the property a^p = a (mod p). CarMicheal numbers have the property
 -- a^p = a (mod p) too, however 'a' and 'p' have to be relatively prime (i.e. gcd has to be 1). So if we find an 'a' that is

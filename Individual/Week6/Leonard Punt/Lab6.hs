@@ -81,7 +81,7 @@ sieveComposites ((i,True):ibs) = (i,True) : sieveComposites (map (\ (n,b) -> (n,
 testF :: Int -> [Integer] -> IO ()
 testF k (p:ps) = do
   r <- primeF k p
-  when (r) $ print("Number: " ++ show p ++ ", Fermat's check: " ++ show r)
+  when r $ print("Number: " ++ show p ++ ", Fermat's check: " ++ show r)
   testF k ps
 
 -- Exercise 5:
@@ -102,7 +102,7 @@ testF 5 carmichael -> does not return the first CarMicheal number (294409) as a 
 testMR :: Int -> [Integer] -> IO ()
 testMR k (p:ps) = do
   r <- primeMR k p
-  when (r) $ print("Number: " ++ show p ++ ", Miller-Rabin's check: " ++ show r)
+  when r $ print("Number: " ++ show p ++ ", Miller-Rabin's check: " ++ show r)
   testMR k ps
 
 -- Findings:
@@ -136,7 +136,7 @@ mersennePrimes p = do
   let p1 = (2^p - 1) in
     do
       r <- primeMR 5 p1
-      when (r) $ mersennePrimes p1
+      when r $ mersennePrimes p1
 
 -- Findings:
 {-
@@ -164,9 +164,9 @@ rsaExample message = do
       encodedMessage = rsa_encode publicKey message
       decodedMessage = rsa_decode privateKey encodedMessage in
         do
-          print("Message: " ++ show(message))
-          print("Encoded message: " ++ show(encodedMessage))
-          print("Decoded message: " ++ show(decodedMessage))
+          print("Message: " ++ show message)
+          print("Encoded message: " ++ show encodedMessage)
+          print("Decoded message: " ++ show decodedMessage)
 
 -- Generates a pair of primes with same bit length.
 genPrimePairSameBitLength :: IO (Integer, Integer)
@@ -175,8 +175,7 @@ genPrimePairSameBitLength = do
   p2 <- genPrime
   let b1 = bitLength p1
       b2 = bitLength p2 in
-      do
-        if b1 == b2 then return (p1,p2) else genPrimePairSameBitLength
+      if b1 == b2 then return (p1,p2) else genPrimePairSameBitLength
 
 -- Generates a prime between m8 and m12.
 genPrime :: IO Integer
@@ -192,4 +191,4 @@ getNextPrime n = do
 
 -- Calculates the bit length of an integer (source: http://reference.wolfram.com/mathematica/ref/BitLength.html).
 bitLength :: Integer -> Integer
-bitLength n = floor $ (logBase 2 (fromIntegral n)) + 1
+bitLength n = floor $ logBase 2 (fromIntegral n) + 1

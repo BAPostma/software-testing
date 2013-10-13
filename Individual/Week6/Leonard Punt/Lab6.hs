@@ -96,3 +96,34 @@ testF 5 carmichael -> does not return the first CarMicheal number (294409) as a 
 -- a^p = a (mod p) too, however 'a' and 'p' have to be relatively prime (i.e. gcd has to be 1). So if we find an 'a' that is
 -- not relatively prime with 'p', is does not pass Fermat's prime check. The higher 'k' gets, the higher the probability we
 -- find such an 'a'.
+
+-- Exercise 6:
+-- Takes an Int which indicates how many times the Miller-Rabin primality check is conducted and a list of integers to test for primality
+testMR :: Int -> [Integer] -> IO ()
+testMR k (p:ps) = do
+  r <- primeMR k p
+  when (r) $ print("Number: " ++ show p ++ ", Miller-Rabin's check: " ++ show r)
+  testMR k ps
+
+-- Findings:
+{-
+testMR 1 carmichael
+"Number: 100264053529, Miller-Rabin's check: True"
+"Number: 3296857440241, Miller-Rabin's check: True"
+"Number: 3878725359169, Miller-Rabin's check: True"
+"Number: 15181505298649, Miller-Rabin's check: True"
+"Number: 24977268314209, Miller-Rabin's check: True"
+"Number: 35700127755121, Miller-Rabin's check: True"
+(and many more)
+
+testMR 2 carmichael
+"Number: 11413778221441, Miller-Rabin's check: True"
+"Number: 177548395641481, Miller-Rabin's check: True"
+"Number: 2057172011015041, Miller-Rabin's check: True"
+"Number: 438857911794266929, Miller-Rabin's check: True"
+"Number: 445578582952541881, Miller-Rabin's check: True"
+(and many more)
+
+testMR 5 carmichael -> did't found any number that fooled the MR test after running for 2 minutes
+-}
+-- Conclusion: much less CarMicheal numbers fool the Miller-Rabin test.

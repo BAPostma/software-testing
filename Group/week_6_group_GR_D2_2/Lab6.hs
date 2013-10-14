@@ -53,7 +53,7 @@ import Control.Monad
 -- Eratosthenes’ sieve, so that instead of throw- ing away composite numbers, it marks them as false. Next filter out 
 -- the numbers marked as false.
 
--- Duration: 70 minutes.
+-- Duration: 90 minutes.
 
 -- Return a infinite list with composite numbers.
 composites :: [Integer]
@@ -62,6 +62,14 @@ composites = composite_sieve [2..]
 composite_sieve :: [Integer] -> [Integer]
 composite_sieve xs = [i | i <- xs, head (factors i) /= i]
 -- Credits to Ferry for optimalisation.
+
+-- This function is implemented according the hints in the assignment, but the function above is much faster
+compositesAlternative :: [Integer]
+compositesAlternative = [x | (x,False) <- sieveComposites [(i,True) | i <- [2..]]]
+
+sieveComposites :: [(Integer,Bool)] -> [(Integer,Bool)]
+sieveComposites ((i,False):ibs) = (i,False) : sieveComposites ibs
+sieveComposites ((i,True):ibs) = (i,True) : sieveComposites (map (\ (n,b) -> (n, b && rem n i /= 0)) ibs)
 
 -- 4. Use the list of composite numbers to test Fermat's primality check. What is the
 -- least composite number that you can find that fools the check, for testF k with
@@ -150,7 +158,7 @@ testMR k (p:ps) = do
 -- and use the Miller-Rabin algorithm to check whether 2^p − 1 is also prime. Find information about Mersenne primes on internet 
 -- and check whether the numbers that you found are genuine Mersenne primes. Report on your findings.
 
--- Duration:
+-- Duration: 30 minutes
 
 -- Precondition: input is a prime number
 mersennePrimes :: Integer -> IO ()
